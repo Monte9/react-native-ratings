@@ -36,7 +36,7 @@ const TYPES = {
   },
 }
 
-class Rating extends Component {
+export default class Rating extends Component {
   static defaultProps = {
     type: 'star',
     ratingImage: require('./images/star.png'),
@@ -243,5 +243,3 @@ const styles = StyleSheet.create({
     color: '#34495e'
   }
 });
-
-module.exports = Rating

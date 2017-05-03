@@ -2,7 +2,7 @@
   "name": "react-native-ratings",
   "version": "1.0.0",
   "description": "A extendable Rating's components for React Native with gestures and an intuitive API",
-  "main": "src/index.js",
+  "main": "./src/rating.js",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/Monte9/react-native-ratings.git"
