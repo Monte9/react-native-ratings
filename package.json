@@ -1,6 +1,6 @@
 {
   "name": "react-native-ratings",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A extendable Rating's components for React Native with gestures and an intuitive API",
   "main": "./src/rating.js",
   "repository": {
@@ -22,7 +22,8 @@
     "lint": "eslint src/"
   },
   "peerDependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "react": "16.0.0-alpha.6"
   },
   "author": "Monte Thakkar",
   "license": "MIT",
