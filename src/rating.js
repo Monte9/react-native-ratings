@@ -221,7 +221,6 @@ const styles = StyleSheet.create({
   ratingView: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignContent: 'center',
     alignItems: 'center',
     paddingBottom: 5,
   },
