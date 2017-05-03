@@ -20,6 +20,7 @@ class App extends React.Component {
         <View style={styles.viewContainer}>
           <Rating
             showRating
+            onFinishRating={this.ratingCompleted}
             style={{ paddingVertical: 10 }}
           />
           <Rating
