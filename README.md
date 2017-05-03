@@ -90,9 +90,9 @@ Look at the [`expo_example`](https://github.com/Monte9/react-native-ratings/tree
 
 ## Motivation
 
-One of my friends showed me [this](https://github.com/kartik-v/bootstrap-star-rating/_) [Star Rating feature in Bootstrap](http://plugins.krajee.com/star-rating-demo-theme-default) and it looks really interesting. So I challenged myself to re-implement it in React Native.
+One of my friends showed me [this](https://github.com/kartik-v/bootstrap-star-rating/) [Star Rating feature in Bootstrap](http://plugins.krajee.com/star-rating-demo-theme-default) and it looks really interesting. So I challenged myself to re-implement it in React Native.
 
-Also this is my first [`npm module`](https://www.npmjs.com/package/react-native-ratings). :confetti_ball:
+Also this is my first [`npm module`](https://www.npmjs.com/package/react-native-ratings) :confetti_ball:
 
 ## Feedback
 
