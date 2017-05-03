@@ -8,10 +8,24 @@
   A extendable Rating's components for React Native with gestures and an intuitive API
 </p>
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-native-ratings"><img src="https://img.shields.io/npm/v/react-native-ratings.svg?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/react-native-ratings"><img src="https://img.shields.io/npm/dm/react-native-ratings.svg?style=flat-square"></a>
+</p>
+
 ## Demo
 
 ![Demo gif](./react-native-ratings.gif)
 
+## Installation
+
+Install the package using npm or yarn:
+
+```yarn add react-native-ratings```
+
+OR
+
+```npm i react-native-ratings```
 
 ## Usage
 
@@ -20,7 +34,7 @@
 <img src="http://i.imgur.com/nUs3SRM.png" width=300 />
 
 ``` js
-import { Rating } from 'react-native-ratings';
+import Rating from 'react-native-ratings';
 
 const WATER_IMAGE = require('./water.png')
 
@@ -69,6 +83,14 @@ ratingCompleted(rating) {
 | showRating | none | boolean | Displays the Built-in Rating UI to show the rating value in real-time (optional) |
 | style | none | function | Exposes style prop to add additonal styling to the container view (optional) |
 
+
+## Try it out
+
+You can try it out with Exponent [here](https://exp.host/@monte9/react-native-star-rating).
+
+### Example
+
+Look at the [expo_example](https://github.com/Monte9/react-native-ratings/tree/master/expo_example) folder to run the expo app locally.
 
 <br />
 
