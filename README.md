@@ -88,8 +88,6 @@ You can try it out with Exponent [here](https://exp.host/@monte9/react-native-st
 
 Look at the [`expo_example`](https://github.com/Monte9/react-native-ratings/tree/master/expo_example) folder to run the expo app locally.
 
-<br />
-
 ## Feedback
 
 This repo is being actively manitained. Feel free to open a new Issue with a `Feature Request` or submit a PR with an `Enhancement`.
