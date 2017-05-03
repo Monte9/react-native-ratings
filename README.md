@@ -88,6 +88,12 @@ You can try it out with Exponent [here](https://exp.host/@monte9/react-native-st
 
 Look at the [`expo_example`](https://github.com/Monte9/react-native-ratings/tree/master/expo_example) folder to run the expo app locally.
 
+## Motivation
+
+One of my friends showed me [this](https://github.com/kartik-v/bootstrap-star-rating/_) [Star Rating feature in Bootstrap](http://plugins.krajee.com/star-rating-demo-theme-default) and it looks really interesting. So I challenged myself to re-implement it in React Native.
+
+Also this is my first [`npm module`](https://www.npmjs.com/package/react-native-ratings). :confetti_ball:
+
 ## Feedback
 
 This repo is being actively manitained. Feel free to open a new Issue with a `Feature Request` or submit a PR with an `Enhancement`.
