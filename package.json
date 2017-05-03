@@ -1,0 +1,38 @@
+{
+  "name": "react-native-ratings",
+  "version": "1.0.0",
+  "description": "A extendable Rating's components for React Native with gestures and an intuitive API",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Monte9/react-native-ratings.git"
+  },
+  "keywords": [
+    "react-native",
+    "reactjs",
+    "reactnative",
+    "gestures",
+    "ios",
+    "stars",
+    "android",
+    "ratings",
+    "ui-components"
+  ],
+  "scripts": {
+    "lint": "eslint src/"
+  },
+  "peerDependencies": {
+    "lodash": "^4.17.4"
+  },
+  "author": "Monte Thakkar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Monte9/react-native-ratings/issues"
+  },
+  "homepage": "https://github.com/Monte9/react-native-ratings#readme",
+  "devDependencies": {
+    "lodash": "^4.17.4",
+    "react": "16.0.0-alpha.6",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-16.0.0.tar.gz"
+  }
+}
