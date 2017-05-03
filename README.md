@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Monte9/react-native-ratings">
-    <img alt="react-native-ratings" src="./logo.png" width="450">
+    <img alt="react-native-ratings" src="http://i.imgur.com/x0dKMHW.png" width="450">
   </a>
 </p>
 
@@ -15,9 +15,9 @@
 
 ## Usage
 
-<img src="./screenshots/default.png" width=300 />
-<img src="./screenshots/built-in-types.png" width=300 />
-<img src="./screenshots/custom.png" width=300 />
+<img src="http://i.imgur.com/lLdzWnJ.png" width=300 />
+<img src="http://i.imgur.com/9uSgLoU.png" width=300 />
+<img src="http://i.imgur.com/nUs3SRM.png" width=300 />
 
 ``` js
 import { Rating } from 'react-native-ratings';
