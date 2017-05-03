@@ -19,7 +19,7 @@
 
 ## Installation
 
-Install the package using npm or yarn:
+Install the package using yarn or npm:
 
 ```yarn add react-native-ratings``` or  ```npm i react-native-ratings```
 
