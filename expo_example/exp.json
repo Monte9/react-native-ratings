@@ -1,10 +1,10 @@
 {
   "name": "react-native-star-rating",
-  "description": "An empty new project",
+  "description": "Demo app for React Native Rating's component",
   "slug": "react-native-star-rating",
   "privacy": "public",
   "sdkVersion": "16.0.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "orientation": "portrait",
   "primaryColor": "#cccccc",
   "icon": "./assets/icons/app.png",
@@ -13,7 +13,10 @@
     "hideExponentText": false
   },
   "packagerOpts": {
-    "assetExts": ["ttf", "mp4"]
+    "assetExts": [
+      "ttf",
+      "mp4"
+    ]
   },
   "ios": {
     "supportsTablet": true

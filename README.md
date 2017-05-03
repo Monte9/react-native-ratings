@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  A extendable Rating's components for React Native with gestures and an intuitive API
+  An extendable Rating's components for React Native with gestures and an intuitive API
 </p>
 
 <p align="center">
@@ -21,11 +21,7 @@
 
 Install the package using npm or yarn:
 
-```yarn add react-native-ratings```
-
-OR
-
-```npm i react-native-ratings```
+```yarn add react-native-ratings``` or  ```npm i react-native-ratings```
 
 ## Usage
 
@@ -90,8 +86,10 @@ You can try it out with Exponent [here](https://exp.host/@monte9/react-native-st
 
 ### Example
 
-Look at the [expo_example](https://github.com/Monte9/react-native-ratings/tree/master/expo_example) folder to run the expo app locally.
+Look at the [`expo_example`](https://github.com/Monte9/react-native-ratings/tree/master/expo_example) folder to run the expo app locally.
 
 <br />
 
-**This repo is being actively manitained. Feel free to open a new Issue with a `Feature Request` or submit a PR with an `Enhancement`.**
+## Feedback
+
+This repo is being actively manitained. Feel free to open a new Issue with a `Feature Request` or submit a PR with an `Enhancement`.
