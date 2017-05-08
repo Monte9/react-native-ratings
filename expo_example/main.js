@@ -2,12 +2,12 @@ import Expo from 'expo';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Rating from 'react-native-ratings'
-const WATER_IMAGE = require('./water.png')
+import Rating from './src/rating'
+const WATER_IMAGE = require( './water.png' )
 
 class App extends React.Component {
-  ratingCompleted(rating) {
-    console.log("Rating is: " + rating)
+  ratingCompleted( rating ) {
+    // Console.log( `Rating is: ${rating}` )
   }
 
   render() {
@@ -24,10 +24,10 @@ class App extends React.Component {
             style={{ paddingVertical: 10 }}
           />
           <Rating
-            type='custom'
+            type="custom"
             ratingImage={WATER_IMAGE}
-            ratingColor='#3498db'
-            ratingBackgroundColor='#ceee'
+            ratingColor="#3498db"
+            ratingBackgroundColor="#c1ee"
             ratingCount={10}
             imageSize={30}
             onFinishRating={this.ratingCompleted}
@@ -35,7 +35,7 @@ class App extends React.Component {
             style={{ paddingVertical: 10 }}
           />
           <Rating
-            type='bell'
+            type="bell"
             ratingCount={4}
             imageSize={60}
             onFinishRating={this.ratingCompleted}
@@ -43,7 +43,7 @@ class App extends React.Component {
             style={{ paddingVertical: 10 }}
           />
           <Rating
-            type='rocket'
+            type="rocket"
             ratingCount={6}
             imageSize={60}
             onFinishRating={this.ratingCompleted}
@@ -51,11 +51,12 @@ class App extends React.Component {
             style={{ paddingVertical: 10 }}
           />
           <Rating
-            type='heart'
+            type="heart"
             ratingCount={3}
             imageSize={60}
             onFinishRating={this.ratingCompleted}
             showRating
+            bottomBorderRadius={75}
             style={{ paddingVertical: 10 }}
           />
         </View>
@@ -64,14 +65,14 @@ class App extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
   headingContainer: {
-    paddingTop: 20,
+    paddingTop: 20
   },
   titleText: {
     fontSize: 25,
@@ -90,8 +91,8 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   }
-});
+} );
 
-Expo.registerRootComponent(App);
+Expo.registerRootComponent( App );
