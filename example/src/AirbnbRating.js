@@ -17,7 +17,7 @@ export default class AirbnbRating extends React.Component {
   componentDidMount() {
     const { defaultRating } = this.props
 
-    this.setState({ position: defaultRating })
+    this.setState({ position: defaultRating || 5 })
   }
 
   renderStars(rating_array) {
