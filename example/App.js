@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { StyleSheet, Text, View, Platform, ScrollView } from 'react-native';
 
 import Rating from './src/rating'
+import AirbnbRating from './src/AirbnbRating'
 
 const WATER_IMAGE = require('./assets/water.png');
 
@@ -17,45 +18,56 @@ export default class App extends React.Component {
           <Text style={styles.titleText}>React Native Ratings</Text>
           <Text style={styles.subtitleText}>gestures for the win!</Text>
         </View>
-        <View style={styles.viewContainer}>
-          <Rating
-            showRating
-            imageSize={40}
-            onFinishRating={this.ratingCompleted}
-            style={{ paddingVertical: 10 }}
+        <ScrollView style={styles.viewContainer}>
+          <Text style={[styles.titleText, { marginTop: 30, color: '#e74c3c', fontSize: 22 }]}>Airbnb-style Tap Ratings</Text>
+          <AirbnbRating />
+          <AirbnbRating
+            count={11}
+            reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
+            defaultRating={11}
+            size={20}
           />
-          <Rating
-            showRating
-            type="star"
-            fractions={1}
-            startingValue={3.6}
-            readonly
-            imageSize={40}
-            onFinishRating={this.ratingCompleted}
-            style={{ paddingVertical: 10 }}
-          />
-          <Rating
-            type="custom"
-            ratingImage={WATER_IMAGE}
-            ratingColor="#3498db"
-            ratingBackgroundColor="#ceee"
-            ratingCount={10}
-            imageSize={30}
-            onFinishRating={this.ratingCompleted}
-            showRating
-            style={{ paddingVertical: 10 }}
-          />
-          <Rating
-            type="heart"
-            ratingCount={3}
-            fractions={2}
-            startingValue={1.57}
-            imageSize={40}
-            onFinishRating={this.ratingCompleted}
-            showRating
-            style={{ paddingVertical: 10 }}
-          />
-        </View>
+          <Text style={[styles.titleText, { marginTop: 30, color: '#9b59b6', fontSize: 22 }]}>Whatsapp-style Swipe Ratings</Text>
+          <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 30}}>
+            <Rating
+              showRating
+              imageSize={40}
+              onFinishRating={this.ratingCompleted}
+              style={{ paddingVertical: 10 }}
+            />
+            <Rating
+              showRating
+              type="star"
+              fractions={1}
+              startingValue={3.6}
+              readonly
+              imageSize={40}
+              onFinishRating={this.ratingCompleted}
+              style={{ paddingVertical: 10 }}
+            />
+            <Rating
+              type="custom"
+              ratingImage={WATER_IMAGE}
+              ratingColor="#3498db"
+              ratingBackgroundColor="#ceee"
+              ratingCount={10}
+              imageSize={30}
+              onFinishRating={this.ratingCompleted}
+              showRating
+              style={{ paddingVertical: 10 }}
+            />
+            <Rating
+              type="heart"
+              ratingCount={3}
+              fractions={2}
+              startingValue={1.57}
+              imageSize={40}
+              onFinishRating={this.ratingCompleted}
+              showRating
+              style={{ paddingVertical: 10 }}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -64,12 +76,10 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'white',
   },
   headingContainer: {
-    paddingTop: 20,
+    paddingTop: 50,
   },
   titleText: {
     fontSize: 25,
@@ -85,10 +95,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
     color: '#34495e',
-    marginBottom: 30,
   },
   viewContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1
   },
 });
