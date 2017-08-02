@@ -339,7 +339,7 @@ export default class Rating extends Component {
     imageSize: PropTypes.number,
     onFinishRating: PropTypes.func,
     showRating: PropTypes.bool,
-    style: ViewPropTypes.style,
+    style: ViewPropTypes.style || View.propTypes.style,
     readonly: PropTypes.bool,
     startingValue: PropTypes.number,
     fractions: fractionsType,
