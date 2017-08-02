@@ -15,6 +15,7 @@
 
 ## Demo
 
+![Demo gif](./airbnb_ratings.gif)
 ![Demo gif](./react-native-ratings.gif)
 
 ## Installation
@@ -30,7 +31,7 @@ Install the package using yarn or npm:
 <img src="http://i.imgur.com/nUs3SRM.png" width=300 />
 
 ``` js
-import Rating from 'react-native-ratings';
+import { Rating, AirbnbRating } from 'react-native-ratings';
 
 const WATER_IMAGE = require('./water.png')
 
@@ -38,10 +39,19 @@ ratingCompleted(rating) {
   console.log("Rating is: " + rating)
 }
 
+<AirbnbRating />
+
 <Rating
   showRating
   onFinishRating={this.ratingCompleted}
   style={{ paddingVertical: 10 }}
+/>
+
+<AirbnbRating
+  count={11}
+  reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
+  defaultRating={11}
+  size={20}
 />
 
 <Rating
@@ -82,15 +92,17 @@ ratingCompleted(rating) {
 
 ## Try it out
 
-You can try it out with Exponent [here](https://exp.host/@monte9/react-native-star-rating).
+You can try it out with Exponent [here](https://expo.io/@monte9/react-native-ratings).
 
 ### Example
 
-Look at the [`expo_example`](https://github.com/Monte9/react-native-ratings/tree/master/expo_example) folder to run the expo app locally.
+Look at the [`example`](https://github.com/Monte9/react-native-ratings/tree/master/example) folder to run the expo app locally.
 
 ## Motivation
 
 One of my friends showed me [this](https://github.com/kartik-v/bootstrap-star-rating/) [Star Rating feature in Bootstrap](http://plugins.krajee.com/star-rating-demo-theme-default) and it looks really interesting. So I challenged myself to re-implement it in React Native.
+
+Followed by that, for `v3`, I recreated the Airbnb ratings component and added it to this repo, in case others find this useful. It works out of the box and is quite functional.
 
 Also this is my first [`npm module`](https://www.npmjs.com/package/react-native-ratings) :confetti_ball:
 
