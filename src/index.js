@@ -1,4 +1,4 @@
-import Rating from './Rating';
+import Rating from './rating';
 import AirbnbRating from './AirbnbRating';
 
 export {
