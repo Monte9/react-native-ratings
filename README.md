@@ -16,6 +16,7 @@
 ## Demo
 
 ![Demo gif](./airbnb_ratings.gif)
+
 ![Demo gif](./react-native-ratings.gif)
 
 ## Installation
