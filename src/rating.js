@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
   View, Text, Animated, PanResponder, Image,
-  StyleSheet, Platform, ViewPropTypes
+  StyleSheet, Platform
 } from 'react-native';
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
@@ -339,7 +339,7 @@ export default class Rating extends Component {
     imageSize: PropTypes.number,
     onFinishRating: PropTypes.func,
     showRating: PropTypes.bool,
-    style: ViewPropTypes.style || View.propTypes.style,
+    style: View.propTypes.style,
     readonly: PropTypes.bool,
     startingValue: PropTypes.number,
     fractions: fractionsType,
