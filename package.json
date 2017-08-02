@@ -1,6 +1,6 @@
 {
   "name": "react-native-ratings",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "The standard Ratings component for React Native",
   "main": "./src/index.js",
   "repository": {
