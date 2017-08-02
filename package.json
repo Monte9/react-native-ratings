@@ -2,7 +2,7 @@
   "name": "react-native-ratings",
   "version": "3.0.0",
   "description": "The standard Ratings component for React Native",
-  "main": "./src/rating.js",
+  "main": "./src/index.js",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/Monte9/react-native-ratings.git"
