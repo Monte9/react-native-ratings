@@ -51,7 +51,7 @@ export default class AirbnbRating extends React.Component {
 
   render() {
     const { position } = this.state
-    const { count, reviews } = this.props
+    const { count, reviews, showReviews } = this.props
     const rating_array = []
 
     _.times(count || 5, index => {
@@ -68,9 +68,11 @@ export default class AirbnbRating extends React.Component {
 
     return (
       <View style={styles.ratingContainer}>
-        <Text style={styles.reviewText}>
-          {reviews ? reviews[position - 1] : this.displayReview()}
-        </Text>
+        { showReviews &&
+          <Text style={styles.reviewText}>
+            {reviews ? reviews[position - 1] : this.displayReview()}
+          </Text>
+        }
         <View style={styles.starContainer}>
           {this.renderStars(rating_array)}
         </View>
