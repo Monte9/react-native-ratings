@@ -1,11 +1,19 @@
 import _ from 'lodash';
 
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Star from './Star'
 
-export default class AirbnbRating extends React.Component {
+export default class AirbnbRating extends Component {
+  static defaultProps = {
+    defaultRating: 5,
+    reviews: ["Terrible", "Bad", "Okay", "Good", "Great"],
+    count: 5,
+    onFinishRating: () => console.log('Rating selected. Attach a function here.'),
+  };
+
   constructor() {
     super()
 
@@ -17,7 +25,7 @@ export default class AirbnbRating extends React.Component {
   componentDidMount() {
     const { defaultRating } = this.props
 
-    this.setState({ position: defaultRating || 5 })
+    this.setState({ position: defaultRating })
   }
 
   renderStars(rating_array) {
@@ -27,26 +35,11 @@ export default class AirbnbRating extends React.Component {
   }
 
   starSelectedInPosition(position) {
+    const { onFinishRating } = this.props
+
+    onFinishRating(position);
+
     this.setState({ position: position })
-  }
-
-  displayReview() {
-    const { position } = this.state
-
-    switch (position) {
-      case 1:
-        return "Terrible"
-      case 2:
-        return "Bad"
-      case 3:
-        return "Okay"
-      case 4:
-        return "Good"
-      case 5:
-        return "Great"
-      default:
-        return "Great"
-    }
   }
 
   render() {
@@ -54,7 +47,7 @@ export default class AirbnbRating extends React.Component {
     const { count, reviews } = this.props
     const rating_array = []
 
-    _.times(count || 5, index => {
+    _.times(count, index => {
       rating_array.push(
         <Star
           key={index}
@@ -69,7 +62,7 @@ export default class AirbnbRating extends React.Component {
     return (
       <View style={styles.ratingContainer}>
         <Text style={styles.reviewText}>
-          {reviews ? reviews[position - 1] : this.displayReview()}
+          {reviews[position - 1]}
         </Text>
         <View style={styles.starContainer}>
           {this.renderStars(rating_array)}

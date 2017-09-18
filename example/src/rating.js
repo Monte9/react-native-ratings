@@ -1,10 +1,10 @@
 import times from 'lodash.times';
-import PropTypes from 'prop-types';
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import {
-  View, Text, Animated, PanResponder, Image,
-  StyleSheet, Platform, ViewPropTypes
+  View, Text, Animated, PanResponder, Image, StyleSheet, Platform, ViewPropTypes
 } from 'react-native';
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
