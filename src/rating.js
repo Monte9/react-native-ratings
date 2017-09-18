@@ -1,10 +1,10 @@
 import times from 'lodash.times';
-import PropTypes from 'prop-types';
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import {
-  View, Text, Animated, PanResponder, Image,
-  StyleSheet, Platform
+  View, Text, Animated, PanResponder, Image, StyleSheet, Platform, ViewPropTypes
 } from 'react-native';
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
@@ -339,7 +339,7 @@ export default class Rating extends Component {
     imageSize: PropTypes.number,
     onFinishRating: PropTypes.func,
     showRating: PropTypes.bool,
-    style: View.propTypes.style,
+    style: ViewPropTypes.style,
     readonly: PropTypes.bool,
     startingValue: PropTypes.number,
     fractions: fractionsType,

@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, Platform, ScrollView } from 'react-native';
 
-import Rating from './src/Rating'
+import Rating from './src/rating'
 import AirbnbRating from './src/AirbnbRating'
 
 const WATER_IMAGE = require('./assets/water.png');
 
-export default class App extends React.Component {
+export default class App extends Component {
   ratingCompleted(rating) {
     console.log('Rating is: ' + rating);
   }
@@ -26,6 +26,7 @@ export default class App extends React.Component {
             reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
             defaultRating={11}
             size={20}
+            onFinishRating={this.ratingCompleted}
           />
           <Text style={[styles.titleText, { marginTop: 30, color: '#9b59b6', fontSize: 22 }]}>Whatsapp-style Swipe Ratings</Text>
           <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 30}}>
