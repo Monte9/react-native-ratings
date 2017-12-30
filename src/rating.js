@@ -1,4 +1,4 @@
-import times from 'lodash.times';
+import times from 'lodash/times';
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';

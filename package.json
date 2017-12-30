@@ -22,7 +22,7 @@
     "lint": "eslint src/"
   },
   "peerDependencies": {
-    "react": "react@16.0.0-alpha.12"
+    "react": "16.0.0"
   },
   "author": "Monte Thakkar",
   "license": "MIT",
@@ -31,11 +31,11 @@
   },
   "homepage": "https://github.com/Monte9/react-native-ratings#readme",
   "devDependencies": {
-    "lodash.times": "^4.3.2",
-    "react": "react@16.0.0-alpha.12",
-    "react-native": "^0.47.0"
+    "react": "16.0.0",
+    "react-native": "^0.51.0"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "prop-types": "^15.5.10"
   }
 }
