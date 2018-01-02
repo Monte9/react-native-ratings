@@ -36,6 +36,7 @@
     "react-native": "^0.47.0"
   },
   "dependencies": {
+    "lodash.times": "^4.3.2",
     "prop-types": "^15.5.10"
   }
 }
