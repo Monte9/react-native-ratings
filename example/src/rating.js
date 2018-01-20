@@ -139,7 +139,7 @@ export default class Rating extends Component {
 
     return times(ratingCount, index =>
       <View key={index} style={styles.starContainer}>
-        <Image source={source} style={{width: imageSize, height: imageSize}}/>
+        <Image source={source} style={{width: imageSize, height: imageSize}} />
       </View>
     );
   }
