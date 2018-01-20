@@ -1,7 +1,4 @@
-import Rating from './rating';
+import Rating from './Rating';
 import AirbnbRating from './AirbnbRating';
 
-export {
-  Rating,
-  AirbnbRating,
-}
+export { Rating, AirbnbRating }
