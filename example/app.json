@@ -4,7 +4,7 @@
     "description": "Demo app for the standard React Native Ratings component",
     "slug": "react-native-ratings",
     "privacy": "public",
-    "sdkVersion": "19.0.0",
+    "sdkVersion": "24.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",

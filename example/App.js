@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Platform, ScrollView } from 'react-native';
 
-import Rating from './src/rating'
+import Rating from './src/Rating'
 import AirbnbRating from './src/AirbnbRating'
 
 const WATER_IMAGE = require('./assets/water.png');

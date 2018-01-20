@@ -12,6 +12,7 @@ export default class AirbnbRating extends Component {
     reviews: ["Terrible", "Bad", "Okay", "Good", "Great"],
     count: 5,
     onFinishRating: () => console.log('Rating selected. Attach a function here.'),
+    showRating: true
   };
 
   constructor() {
@@ -44,7 +45,7 @@ export default class AirbnbRating extends Component {
 
   render() {
     const { position } = this.state
-    const { count, reviews } = this.props
+    const { count, reviews, showRating } = this.props
     const rating_array = []
 
     _.times(count, index => {
@@ -61,9 +62,11 @@ export default class AirbnbRating extends Component {
 
     return (
       <View style={styles.ratingContainer}>
-        <Text style={styles.reviewText}>
-          {reviews[position - 1]}
-        </Text>
+        { showRating &&
+          <Text style={styles.reviewText}>
+            {reviews[position - 1]}
+          </Text>
+        }
         <View style={styles.starContainer}>
           {this.renderStars(rating_array)}
         </View>
@@ -74,6 +77,7 @@ export default class AirbnbRating extends Component {
 
 const styles = StyleSheet.create({
   ratingContainer: {
+    backgroundColor: 'transparent',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',

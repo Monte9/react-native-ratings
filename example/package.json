@@ -1,16 +1,13 @@
 {
-  "name": "example",
-  "version": "0.0.0",
-  "description": "Hello Expo!",
-  "author": null,
+  "name": "react-native-ratings-app",
+  "version": "1.0.0",
+  "description": "React Native Ratings Demo App",
+  "author": "Monte Thakkar",
   "private": false,
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
-    "expo": "^19.0.0",
-    "lodash": "^4.17.4",
-    "lodash.times": "^4.3.2",
-    "prop-types": "^15.5.10",
-    "react": "16.0.0-alpha.12",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-19.0.0.tar.gz"
+    "expo": "^24.0.0",
+    "react": "16.0.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz"
   }
 }
