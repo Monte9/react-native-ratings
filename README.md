@@ -13,7 +13,7 @@
   <a href="https://www.npmjs.com/package/react-native-ratings"><img src="https://img.shields.io/npm/dm/react-native-ratings.svg?style=flat-square"></a>
 </p>
 
-## Demo
+## Demo - [try it now](https://snack.expo.io/HyVZcDxBz)
 
 ![Demo gif](./airbnb_ratings.gif)
 
