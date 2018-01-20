@@ -77,6 +77,7 @@ export default class AirbnbRating extends Component {
 
 const styles = StyleSheet.create({
   ratingContainer: {
+    backgroundColor: 'transparent',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
