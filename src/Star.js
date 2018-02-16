@@ -1,12 +1,10 @@
 import React from 'react';
-import {
-  StyleSheet, Text, View, Image, Animated, Easing, TouchableOpacity
-} from 'react-native';
+import {StyleSheet, Text, View, Image, Animated, Easing, TouchableOpacity} from 'react-native';
 
 const STAR_IMAGE = require('./images/airbnb-star.png');
 const STAR_SELECTED_IMAGE = require('./images/airbnb-star-selected.png');
 
-const STAR_SIZE = 40
+const STAR_SIZE = 40;
 
 export default class Star extends React.Component {
   constructor() {
@@ -37,7 +35,7 @@ export default class Star extends React.Component {
 
   render() {
     const { selected } = this.state
-    const { fill, size } = this.props
+    const { fill, size, selectedColor } = this.props
 
     return (
       <TouchableOpacity
@@ -45,10 +43,11 @@ export default class Star extends React.Component {
         onPress={this.spring.bind(this)}
       >
         <Animated.Image
-          source={fill ? STAR_SELECTED_IMAGE : STAR_IMAGE}
+          source={STAR_IMAGE}
           style={[
             styles.starStyle,
             {
+              tintColor: fill && selectedColor ? selectedColor : undefined,
               width: size || STAR_SIZE,
               height: size || STAR_SIZE,
               transform: [{ scale: this.springValue }]
