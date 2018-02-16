@@ -35,12 +35,13 @@ export default class Star extends React.Component {
 
   render() {
     const { selected } = this.state
-    const { fill, size, selectedColor } = this.props
+    const { fill, size, selectedColor, isDisabled } = this.props
 
     return (
       <TouchableOpacity
         activeOpacity={1}
         onPress={this.spring.bind(this)}
+        disabled={isDisabled}
       >
         <Animated.Image
           source={STAR_IMAGE}
