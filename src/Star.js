@@ -1,24 +1,23 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import {StyleSheet, Text, View, Image, Animated, Easing, TouchableOpacity} from 'react-native';
 
 const STAR_IMAGE = require('./images/airbnb-star.png');
 const STAR_SELECTED_IMAGE = require('./images/airbnb-star-selected.png');
-
 const STAR_SIZE = 40;
 
-export default class Star extends React.Component {
+export default class Star extends PureComponent {
   constructor() {
-    super()
-    this.springValue = new Animated.Value(1)
+    super();
+    this.springValue = new Animated.Value(1);
 
     this.state = {
       selected: false
-    }
+    };
   }
 
   spring() {
-    const { position, starSelectedInPosition } = this.props
-    this.springValue.setValue(1.2)
+    const { position, starSelectedInPosition } = this.props;
+    this.springValue.setValue(1.2);
 
     Animated.spring(
       this.springValue,
@@ -27,24 +26,21 @@ export default class Star extends React.Component {
         friction: 2,
         tension: 1
       }
-    ).start()
+    ).start();
 
-    this.setState({ selected: !this.state.selected })
-    starSelectedInPosition(position)
+    this.setState({ selected: !this.state.selected });
+    starSelectedInPosition(position);
   }
 
   render() {
-    const { selected } = this.state
-    const { fill, size, selectedColor, isDisabled } = this.props
+    const { selected } = this.state;
+    const { fill, size, selectedColor, isDisabled } = this.props;
+    const starSource = fill && selectedColor == null ? STAR_SELECTED_IMAGE : STAR_IMAGE;
 
     return (
-      <TouchableOpacity
-        activeOpacity={1}
-        onPress={this.spring.bind(this)}
-        disabled={isDisabled}
-      >
+      <TouchableOpacity activeOpacity={1} onPress={this.spring.bind(this)} disabled={isDisabled}>
         <Animated.Image
-          source={STAR_IMAGE}
+          source={starSource}
           style={[
             styles.starStyle,
             {
