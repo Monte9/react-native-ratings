@@ -1,48 +1,48 @@
-import times from "lodash/times";
+import times from 'lodash/times';
 
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { View, Text, Animated, PanResponder, Image, StyleSheet, Platform, ViewPropTypes } from "react-native";
+import { View, Text, Animated, PanResponder, Image, StyleSheet, Platform, ViewPropTypes } from 'react-native';
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
-const STAR_IMAGE = require("./images/star.png");
-const HEART_IMAGE = require("./images/heart.png");
-const ROCKET_IMAGE = require("./images/rocket.png");
-const BELL_IMAGE = require("./images/bell.png");
+const STAR_IMAGE = require('./images/star.png');
+const HEART_IMAGE = require('./images/heart.png');
+const ROCKET_IMAGE = require('./images/rocket.png');
+const BELL_IMAGE = require('./images/bell.png');
 
 const TYPES = {
   star: {
     source: STAR_IMAGE,
-    color: "#f1c40f",
-    backgroundColor: "white"
+    color: '#f1c40f',
+    backgroundColor: 'white'
   },
   heart: {
     source: HEART_IMAGE,
-    color: "#e74c3c",
-    backgroundColor: "white"
+    color: '#e74c3c',
+    backgroundColor: 'white'
   },
   rocket: {
     source: ROCKET_IMAGE,
-    color: "#2ecc71",
-    backgroundColor: "white"
+    color: '#2ecc71',
+    backgroundColor: 'white'
   },
   bell: {
     source: BELL_IMAGE,
-    color: "#f39c12",
-    backgroundColor: "white"
+    color: '#f39c12',
+    backgroundColor: 'white'
   }
 };
 
 export default class Rating extends Component {
   static defaultProps = {
-    type: "star",
-    ratingImage: require("./images/star.png"),
-    ratingColor: "#f1c40f",
-    ratingBackgroundColor: "white",
+    type: 'star',
+    ratingImage: require('./images/star.png'),
+    ratingColor: '#f1c40f',
+    ratingBackgroundColor: 'white',
     ratingCount: 5,
     imageSize: 60,
-    onFinishRating: () => console.log("Rating finished. Attach a function here."),
+    onFinishRating: () => console.log('Rating finished. Attach a function here.'),
     minValue: 0
   };
 
@@ -74,7 +74,7 @@ export default class Rating extends Component {
         const rating = this.getCurrentRating(this.state.value);
         if (rating >= this.props.minValue) {
           if (!fractions) {
-            // "round up" to the nearest rating image
+            // 'round up' to the nearest rating image
             this.setCurrentRating(rating);
           }
           onFinishRating(rating);
@@ -106,7 +106,7 @@ export default class Rating extends Component {
       {
         inputRange: [-ratingCount * (imageSize / 2), 0, ratingCount * (imageSize / 2)],
         outputRange: [0, (ratingCount * imageSize) / 2, ratingCount * imageSize],
-        extrapolate: "clamp"
+        extrapolate: 'clamp'
       },
       {
         useNativeDriver: true
@@ -130,7 +130,7 @@ export default class Rating extends Component {
       {
         inputRange: [-ratingCount * (imageSize / 2), 0, ratingCount * (imageSize / 2)],
         outputRange: [ratingCount * imageSize, (ratingCount * imageSize) / 2, 0],
-        extrapolate: "clamp"
+        extrapolate: 'clamp'
       },
       {
         useNativeDriver: true
@@ -224,7 +224,7 @@ export default class Rating extends Component {
   render() {
     const { readonly, type, ratingImage, ratingColor, ratingBackgroundColor, style, showRating } = this.props;
 
-    if (type === "custom") {
+    if (type === 'custom') {
       let custom = {
         source: ratingImage,
         color: ratingColor,
@@ -234,7 +234,7 @@ export default class Rating extends Component {
     }
 
     return (
-      <View pointerEvents={readonly ? "none" : "auto"} style={style}>
+      <View pointerEvents={readonly ? 'none' : 'auto'} style={style}>
         {showRating && this.displayCurrentRating()}
         <View style={styles.starsWrapper} {...this.state.panResponder.panHandlers}>
           <View style={styles.starsInsideWrapper}>
@@ -250,57 +250,57 @@ export default class Rating extends Component {
 
 const styles = StyleSheet.create({
   starsWrapper: {
-    flexDirection: "row"
+    flexDirection: 'row'
   },
   starsInsideWrapper: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
-    flexDirection: "row"
+    flexDirection: 'row'
   },
   showRatingView: {
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingBottom: 5
   },
   ratingView: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingBottom: 5
   },
   ratingText: {
     fontSize: 15,
-    textAlign: "center",
-    fontFamily: Platform.OS === "ios" ? "Trebuchet MS" : null,
-    color: "#34495e"
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
+    color: '#34495e'
   },
   readonlyLabel: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     fontSize: 12,
-    textAlign: "center",
-    fontFamily: Platform.OS === "ios" ? "Trebuchet MS" : null,
-    color: "#34495a"
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
+    color: '#34495a'
   },
   currentRatingText: {
     fontSize: 30,
-    textAlign: "center",
-    fontFamily: Platform.OS === "ios" ? "Trebuchet MS" : null
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null
   },
   maxRatingText: {
     fontSize: 18,
-    textAlign: "center",
-    fontFamily: Platform.OS === "ios" ? "Trebuchet MS" : null,
-    color: "#34495e"
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
+    color: '#34495e'
   }
 });
 
 const fractionsType = (props, propName, componentName) => {
   if (props[propName]) {
     const value = props[propName];
-    if (typeof value === "number") {
+    if (typeof value === 'number') {
       return value >= 0 && value <= 20
         ? null
         : new Error(`\`${propName}\` in \`${componentName}\` must be between 0 and 20`);
