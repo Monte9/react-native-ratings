@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  An extendable Rating's components for React Native with gestures and an intuitive API
+  Ratings component for React Native with tap and swipe enabled.
 </p>
 
 <p align="center">
@@ -13,7 +13,7 @@
   <a href="https://www.npmjs.com/package/react-native-ratings"><img src="https://img.shields.io/npm/dm/react-native-ratings.svg?style=flat-square"></a>
 </p>
 
-## Demo - [try it now](https://snack.expo.io/HyVZcDxBz)
+## Demo - [try it now](https://expo.io/@monte9/react-native-ratings)
 
 ![Demo gif](./airbnb_ratings.gif)
 
