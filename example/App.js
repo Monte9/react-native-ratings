@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Platform, ScrollView } from 'react-native';
 
-import Rating from './src/Rating'
-import AirbnbRating from './src/AirbnbRating'
+import { Rating, AirbnbRating } from './src/index';
 
-const WATER_IMAGE = require('./assets/water.png');
+const WATER_IMAGE = require( './assets/water.png' );
 
 export default class App extends Component {
-  ratingCompleted(rating) {
-    console.log('Rating is: ' + rating);
+  ratingCompleted( rating ) {
+    console.log( `Rating is: ${rating}` );
   }
 
   render() {
@@ -19,16 +18,20 @@ export default class App extends Component {
           <Text style={styles.subtitleText}>gestures for the win!</Text>
         </View>
         <ScrollView style={styles.viewContainer}>
-          <Text style={[styles.titleText, { marginTop: 30, color: '#e74c3c', fontSize: 22 }]}>Airbnb-style Tap Ratings</Text>
+          <Text style={[styles.titleText, { marginTop: 30, color: '#e74c3c', fontSize: 22 }]}>Tap Ratings [Airbnb]</Text>
           <AirbnbRating />
           <AirbnbRating
-            count={11}
-            reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
-            defaultRating={11}
+            count={10}
+            reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
+            defaultRating={5}
             size={20}
             onFinishRating={this.ratingCompleted}
           />
-          <Text style={[styles.titleText, { marginTop: 30, color: '#9b59b6', fontSize: 22 }]}>Whatsapp-style Swipe Ratings</Text>
+          <Text style={[styles.titleText, { fontSize: 18, color: 'gray', marginTop: 10, marginBottom: 5 }]}>Disabled</Text>
+          <AirbnbRating isDisabled={true} showRating={false} defaultRating={2} />
+          <Text style={[styles.titleText, { fontSize: 18, color: 'gray', marginTop: 10, marginBottom: 5 }]}>Selected Color</Text>
+          <AirbnbRating showRating={false} selectedColor="green" />
+          <Text style={[styles.titleText, { marginTop: 30, color: '#9b59b6', fontSize: 22 }]}>Swipe Ratings [Whatsapp]</Text>
           <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 30}}>
             <Rating
               showRating
@@ -36,8 +39,8 @@ export default class App extends Component {
               onFinishRating={this.ratingCompleted}
               style={{ paddingVertical: 10 }}
             />
+            <Text style={[styles.titleText, { fontSize: 18, color: 'gray', marginTop: 10, marginBottom: 5 }]}>Disabled</Text>
             <Rating
-              showRating
               type="star"
               fractions={1}
               startingValue={3.6}
@@ -46,6 +49,7 @@ export default class App extends Component {
               onFinishRating={this.ratingCompleted}
               style={{ paddingVertical: 10 }}
             />
+            <Text style={[styles.titleText, { fontSize: 18, color: 'gray', marginTop: 10 }]}>Custom Icon</Text>
             <Rating
               type="custom"
               ratingImage={WATER_IMAGE}
@@ -54,7 +58,7 @@ export default class App extends Component {
               ratingCount={10}
               imageSize={30}
               onFinishRating={this.ratingCompleted}
-              showRating
+              showRating={false}
               style={{ paddingVertical: 10 }}
             />
             <Rating
@@ -74,13 +78,13 @@ export default class App extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   headingContainer: {
-    paddingTop: 50,
+    paddingTop: 50
   },
   titleText: {
     fontSize: 25,
@@ -88,16 +92,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 5,
     fontFamily: Platform.OS === 'ios' ? 'Menlo-Bold' : null,
-    color: '#27ae60',
+    color: '#27ae60'
   },
   subtitleText: {
     fontSize: 18,
     fontWeight: '400',
     textAlign: 'center',
     fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
-    color: '#34495e',
+    color: '#34495e'
   },
   viewContainer: {
     flex: 1
-  },
-});
+  }
+} );
