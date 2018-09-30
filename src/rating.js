@@ -223,124 +223,124 @@ export default class Rating extends Component {
           }
         </View>
       </View>
-      );
-    }
-
-    render() {
-      const {
-        readonly,
-        type,
-        ratingImage,
-        ratingColor,
-        ratingBackgroundColor,
-        style,
-        showRating,
-      } = this.props;
-
-      if (type === 'custom') {
-        let custom = {
-          source: ratingImage,
-          color: ratingColor,
-          backgroundColor: ratingBackgroundColor,
-        };
-        TYPES.custom = custom;
-      }
-
-      return (
-        <View pointerEvents={readonly ? 'none' : 'auto'} style={style}>
-          {showRating && this.displayCurrentRating()}
-          <View
-            style={styles.starsWrapper}
-            {...this.state.panResponder.panHandlers}
-          >
-            <View style={styles.starsInsideWrapper}>
-              <Animated.View style={this.getPrimaryViewStyle()} />
-              <Animated.View style = {this.getSecondaryViewStyle()} />
-            </View>
-          {this.renderRatings()}
-          </View>
-        </View>
-      );
-    }
+    );
   }
 
-  const styles = StyleSheet.create({
-    starsWrapper: {
-      flexDirection: 'row',
-    },
-    starsInsideWrapper: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      flexDirection: 'row',
-    },
-    showRatingView: {
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingBottom: 5,
-    },
-    ratingView: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingBottom: 5,
-    },
-    ratingText: {
-      fontSize: 15,
-      textAlign: 'center',
-      fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
-      color: '#34495e',
-    },
-    readonlyLabel: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      fontSize: 12,
-      textAlign: 'center',
-      fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
-      color: '#34495a',
-    },
-    currentRatingText: {
-      fontSize: 30,
-      textAlign: 'center',
-      fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
-    },
-    maxRatingText: {
-      fontSize: 18,
-      textAlign: 'center',
-      fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
-      color: '#34495e',
-    },
-  });
+  render() {
+    const {
+      readonly,
+      type,
+      ratingImage,
+      ratingColor,
+      ratingBackgroundColor,
+      style,
+      showRating,
+    } = this.props;
 
-  const fractionsType = (props, propName, componentName) => {
-    if (props[propName]) {
-      const value = props[propName];
-      if (typeof value === 'number') {
-        return value >= 0 && value <= 20 ?
-          null :
-          new Error(
-            `\`${propName}\` in \`${componentName}\` must be between 0 and 20`
-          );
-      }
-
-      return new Error(
-        `\`${propName}\` in \`${componentName}\` must be a number`
-      );
+    if (type === 'custom') {
+      let custom = {
+        source: ratingImage,
+        color: ratingColor,
+        backgroundColor: ratingBackgroundColor,
+      };
+      TYPES.custom = custom;
     }
-  };
 
-  Rating.propTypes = {
-    type: PropTypes.string,
-    ratingImage: Image.propTypes.source,
-    ratingColor: PropTypes.string,
-    ratingBackgroundColor: PropTypes.string,
-    ratingCount: PropTypes.number,
-    imageSize: PropTypes.number,
-    onFinishRating: PropTypes.func,
-    showRating: PropTypes.bool,
-    style: ViewPropTypes.style,
-    readonly: PropTypes.bool,
-    startingValue: PropTypes.number,
-    fractions: fractionsType,
-  };
+    return (
+      <View pointerEvents={readonly ? 'none' : 'auto'} style={style}>
+        {showRating && this.displayCurrentRating()}
+        <View
+          style={styles.starsWrapper}
+          {...this.state.panResponder.panHandlers}
+        >
+          <View style={styles.starsInsideWrapper}>
+            <Animated.View style={this.getPrimaryViewStyle()} />
+            <Animated.View style = {this.getSecondaryViewStyle()} />
+          </View>
+        {this.renderRatings()}
+        </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  starsWrapper: {
+    flexDirection: 'row',
+  },
+  starsInsideWrapper: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    flexDirection: 'row',
+  },
+  showRatingView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 5,
+  },
+  ratingView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 5,
+  },
+  ratingText: {
+    fontSize: 15,
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
+    color: '#34495e',
+  },
+  readonlyLabel: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 12,
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
+    color: '#34495a',
+  },
+  currentRatingText: {
+    fontSize: 30,
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
+  },
+  maxRatingText: {
+    fontSize: 18,
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
+    color: '#34495e',
+  },
+});
+
+const fractionsType = (props, propName, componentName) => {
+  if (props[propName]) {
+    const value = props[propName];
+    if (typeof value === 'number') {
+      return value >= 0 && value <= 20 ?
+        null :
+        new Error(
+          `\`${propName}\` in \`${componentName}\` must be between 0 and 20`
+        );
+    }
+
+    return new Error(
+      `\`${propName}\` in \`${componentName}\` must be a number`
+    );
+  }
+};
+
+Rating.propTypes = {
+  type: PropTypes.string,
+  ratingImage: Image.propTypes.source,
+  ratingColor: PropTypes.string,
+  ratingBackgroundColor: PropTypes.string,
+  ratingCount: PropTypes.number,
+  imageSize: PropTypes.number,
+  onFinishRating: PropTypes.func,
+  showRating: PropTypes.bool,
+  style: ViewPropTypes.style,
+  readonly: PropTypes.bool,
+  startingValue: PropTypes.number,
+  fractions: fractionsType,
+};
