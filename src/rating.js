@@ -91,11 +91,13 @@ export default class Rating extends Component {
   componentDidMount() {
     this.setCurrentRating(this.props.startingValue);
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.startingValue !== this.props.startingValue) {
       this.setCurrentRating(nextProps.startingValue);
     }
   }
+
   getPrimaryViewStyle() {
     const { position } = this.state;
     const { imageSize, ratingCount, type } = this.props;

@@ -19,10 +19,11 @@
     "ui-components"
   ],
   "scripts": {
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "clean-install": "rm -rf node_modules && yarn"
   },
   "peerDependencies": {
-    "react": "16.0.0"
+    "react": "^16.0.0"
   },
   "author": "Monte Thakkar",
   "license": "MIT",
@@ -31,8 +32,8 @@
   },
   "homepage": "https://github.com/Monte9/react-native-ratings#readme",
   "devDependencies": {
-    "react": "16.0.0",
-    "react-native": "^0.51.0"
+    "react": "^16.0.0",
+    "react-native": "^0.57.1"
   },
   "dependencies": {
     "lodash": "^4.17.4",
