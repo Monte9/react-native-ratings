@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { StyleSheet, Text, View } from 'react-native';
 
 import Star from './Star'

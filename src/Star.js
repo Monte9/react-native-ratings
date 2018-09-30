@@ -1,14 +1,14 @@
 import React, {PureComponent} from 'react';
-import {StyleSheet, Text, View, Image, Animated, Easing, TouchableOpacity} from 'react-native';
+import {StyleSheet, Animated, TouchableOpacity} from 'react-native';
 
-const STAR_IMAGE = require('./images/airbnb-star.png');
-const STAR_SELECTED_IMAGE = require('./images/airbnb-star-selected.png');
+const STAR_IMAGE = require( './images/airbnb-star.png' );
+const STAR_SELECTED_IMAGE = require( './images/airbnb-star-selected.png' );
 const STAR_SIZE = 40;
 
 export default class Star extends PureComponent {
   constructor() {
     super();
-    this.springValue = new Animated.Value(1);
+    this.springValue = new Animated.Value( 1 );
 
     this.state = {
       selected: false
@@ -17,7 +17,8 @@ export default class Star extends PureComponent {
 
   spring() {
     const { position, starSelectedInPosition } = this.props;
-    this.springValue.setValue(1.2);
+
+    this.springValue.setValue( 1.2 );
 
     Animated.spring(
       this.springValue,
@@ -28,17 +29,16 @@ export default class Star extends PureComponent {
       }
     ).start();
 
-    this.setState({ selected: !this.state.selected });
-    starSelectedInPosition(position);
+    this.setState( { selected: !this.state.selected } );
+    starSelectedInPosition( position );
   }
 
   render() {
-    const { selected } = this.state;
     const { fill, size, selectedColor, isDisabled } = this.props;
-    const starSource = fill && selectedColor == null ? STAR_SELECTED_IMAGE : STAR_IMAGE;
+    const starSource = fill && selectedColor === null ? STAR_SELECTED_IMAGE : STAR_IMAGE;
 
     return (
-      <TouchableOpacity activeOpacity={1} onPress={this.spring.bind(this)} disabled={isDisabled}>
+      <TouchableOpacity activeOpacity={1} onPress={this.spring.bind( this )} disabled={isDisabled}>
         <Animated.Image
           source={starSource}
           style={[
@@ -56,8 +56,8 @@ export default class Star extends PureComponent {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   starStyle: {
     margin: 3
   }
-});
+} );
