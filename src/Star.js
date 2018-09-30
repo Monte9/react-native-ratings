@@ -6,6 +6,10 @@ const STAR_SELECTED_IMAGE = require( './images/airbnb-star-selected.png' );
 const STAR_SIZE = 40;
 
 export default class Star extends PureComponent {
+  static defaultProps = {
+    selectedColor: '#f1c40f'
+  };
+
   constructor() {
     super();
     this.springValue = new Animated.Value( 1 );
