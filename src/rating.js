@@ -97,8 +97,8 @@ export default class Rating extends Component {
       const ROCKET_IMAGE = await require('./images/rocket.png');
       const BELL_IMAGE = await require('./images/bell.png');
       this.setState({display: true})
-    } catch {
-
+    } catch(err) {
+      console.log(err)
     }
     this.setCurrentRating(this.props.startingValue);
   }
