@@ -147,12 +147,12 @@ export default class Rating extends Component {
   }
 
   renderRatings() {
-    const { imageSize, ratingCount, type } = this.props;
+    const { imageSize, ratingCount, type, tintColor='white' } = this.props;
     const source = TYPES[type].source;
 
     return times(ratingCount, index => (
       <View key={index} style={styles.starContainer}>
-        <Image source={source} style={{ width: imageSize, height: imageSize }} />
+        <Image source={source} style={{ width: imageSize, height: imageSize, tintColor }} />
       </View>
     ));
   }
