@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { View, Text, Animated, PanResponder, Image, StyleSheet, Platform, ViewPropTypes } from 'react-native';
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
+
 const STAR_IMAGE = require('./images/star.png');
 const HEART_IMAGE = require('./images/heart.png');
 const ROCKET_IMAGE = require('./images/rocket.png');
@@ -84,11 +85,21 @@ export default class Rating extends Component {
 
     this.state = {
       panResponder,
-      position
+      position,
+      display: false,
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    try {
+      const STAR_IMAGE = await require('./images/star.png');
+      const HEART_IMAGE = await require('./images/heart.png');
+      const ROCKET_IMAGE = await require('./images/rocket.png');
+      const BELL_IMAGE = await require('./images/bell.png');
+      this.setState({display: true})
+    } catch {
+
+    }
     this.setCurrentRating(this.props.startingValue);
   }
 
@@ -234,8 +245,8 @@ export default class Rating extends Component {
       };
       TYPES.custom = custom;
     }
-
-    return (
+    {this.state.display ?
+    (
       <View pointerEvents={readonly ? 'none' : 'auto'} style={style}>
         {showRating && this.displayCurrentRating()}
         <View style={styles.starsWrapper} {...this.state.panResponder.panHandlers}>
@@ -246,7 +257,7 @@ export default class Rating extends Component {
           {this.renderRatings()}
         </View>
       </View>
-    );
+    ) : null}
   }
 }
 
