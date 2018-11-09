@@ -245,7 +245,9 @@ export default class Rating extends Component {
       };
       TYPES.custom = custom;
     }
-    {this.state.display ?
+
+    return this.state.display
+    ?
     (
       <View pointerEvents={readonly ? 'none' : 'auto'} style={style}>
         {showRating && this.displayCurrentRating()}
@@ -257,7 +259,9 @@ export default class Rating extends Component {
           {this.renderRatings()}
         </View>
       </View>
-    ) : null}
+    )
+    :
+    null
   }
 }
 
