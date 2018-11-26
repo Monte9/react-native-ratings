@@ -30,6 +30,12 @@ export default class AirbnbRating extends Component {
     this.setState({ position: defaultRating })
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.defaultRating !== this.props.defaultRating) {
+      this.setState({ position: nextProps.defaultRating })
+    }
+  }
+
   renderStars(rating_array) {
     return _.map(rating_array, (star, index) => {
       return star
