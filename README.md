@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Monte9/react-native-ratings">
-    <img alt="react-native-ratings" src="./resorces/logo.png" width="450">
+    <img alt="react-native-ratings" src="./resources/logo.png" width="450">
   </a>
 </p>
 
@@ -36,7 +36,9 @@
 Install the package using yarn or npm:
 
 ```yarn add react-native-ratings```
+
   OR
+  
 ```npm install --save react-native-ratings```
 
 ## Usage
