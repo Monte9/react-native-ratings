@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, Text, View } from 'react-native';
 
-import Star from './Star'
+import Star from './components/Star'
 
-export default class AirbnbRating extends Component {
+export default class TapRating extends Component {
   static defaultProps = {
-    defaultRating: 5,
+    defaultRating: 3,
     reviews: ["Terrible", "Bad", "Okay", "Good", "Great"],
     count: 5,
     onFinishRating: () => console.log('Rating selected. Attach a function here.'),
@@ -28,6 +28,12 @@ export default class AirbnbRating extends Component {
     const { defaultRating } = this.props
 
     this.setState({ position: defaultRating })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.defaultRating !== this.props.defaultRating) {
+      this.setState({ position: nextProps.defaultRating })
+    }
   }
 
   renderStars(rating_array) {

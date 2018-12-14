@@ -1,4 +1,4 @@
-import Rating from './rating';
-import AirbnbRating from './AirbnbRating';
+import Rating from './SwipeRating';
+import AirbnbRating from './TapRating';
 
 export { Rating, AirbnbRating }

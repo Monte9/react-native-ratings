@@ -3,7 +3,10 @@ import times from 'lodash/times';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { View, Text, Animated, PanResponder, Image, StyleSheet, Platform, ViewPropTypes } from 'react-native';
+import { 
+  View, Text, Animated, PanResponder, Image, 
+  StyleSheet, Platform, ViewPropTypes
+} from 'react-native';
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
 const STAR_IMAGE = require('./images/star.png');
@@ -34,14 +37,14 @@ const TYPES = {
   }
 };
 
-export default class Rating extends Component {
+export default class SwipeRating extends Component {
   static defaultProps = {
     type: 'star',
     ratingImage: require('./images/star.png'),
     ratingColor: '#f1c40f',
     ratingBackgroundColor: 'white',
     ratingCount: 5,
-    imageSize: 60,
+    imageSize: 40,
     onFinishRating: () => console.log('Rating finished. Attach a function here.'),
     minValue: 0
   };
@@ -84,11 +87,23 @@ export default class Rating extends Component {
 
     this.state = {
       panResponder,
-      position
+      position,
+      display: false
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    try {
+      const STAR_IMAGE = await require('./images/star.png');
+      const HEART_IMAGE = await require('./images/heart.png');
+      const ROCKET_IMAGE = await require('./images/rocket.png');
+      const BELL_IMAGE = await require('./images/bell.png');
+
+      this.setState({ display: true })
+    } catch(err) {
+      console.log(err)
+    }
+
     this.setCurrentRating(this.props.startingValue);
   }
 
@@ -147,12 +162,12 @@ export default class Rating extends Component {
   }
 
   renderRatings() {
-    const { imageSize, ratingCount, type } = this.props;
+    const { imageSize, ratingCount, type, tintColor } = this.props;
     const source = TYPES[type].source;
 
     return times(ratingCount, index => (
       <View key={index} style={styles.starContainer}>
-        <Image source={source} style={{ width: imageSize, height: imageSize }} />
+        <Image source={source} style={{ width: imageSize, height: imageSize, tintColor }} />
       </View>
     ));
   }
@@ -236,6 +251,7 @@ export default class Rating extends Component {
     }
 
     return (
+      this.state.display ?
       <View pointerEvents={readonly ? 'none' : 'auto'} style={style}>
         {showRating && this.displayCurrentRating()}
         <View style={styles.starsWrapper} {...this.state.panResponder.panHandlers}>
@@ -245,7 +261,8 @@ export default class Rating extends Component {
           </View>
           {this.renderRatings()}
         </View>
-      </View>
+      </View> :
+      null
     );
   }
 }
@@ -312,7 +329,7 @@ const fractionsType = (props, propName, componentName) => {
   }
 };
 
-Rating.propTypes = {
+SwipeRating.propTypes = {
   type: PropTypes.string,
   ratingImage: Image.propTypes.source,
   ratingColor: PropTypes.string,
