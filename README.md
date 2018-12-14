@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Monte9/react-native-ratings">
-    <img alt="react-native-ratings" src="http://i.imgur.com/x0dKMHW.png" width="450">
+    <img alt="react-native-ratings" src="./resorces/logo.png" width="450">
   </a>
 </p>
 
@@ -15,21 +15,31 @@
 
 ## Demo - [try it now](https://expo.io/@monte9/react-native-ratings)
 
-![Demo gif](./airbnb_ratings.gif)
+![Demo gif](./resources/airbnb_ratings.gif)
 
-![Demo gif](./react-native-ratings.gif)
+### Tap Rating
+
+<div style="flex-direction: row">
+  <img src="./resources/tap_rating_1.png" width="300">
+  <img src="./resources/tap_rating_2.png" width="300">
+</div>
+
+### Swipe Rating
+
+<div style="flex-direction: row">
+  <img src="./resources/swipe_rating_1.png" width="300">
+  <img src="./resources/swipe_rating_2.png" width="300">
+</div>
 
 ## Installation
 
 Install the package using yarn or npm:
 
-```yarn add react-native-ratings``` or  ```npm i react-native-ratings```
+```yarn add react-native-ratings```
+  OR
+```npm install --save react-native-ratings```
 
 ## Usage
-
-<img src="http://i.imgur.com/lLdzWnJ.png" width=300 />
-<img src="http://i.imgur.com/9uSgLoU.png" width=300 />
-<img src="http://i.imgur.com/nUs3SRM.png" width=300 />
 
 ``` js
 import { Rating, AirbnbRating } from 'react-native-ratings';
@@ -42,17 +52,17 @@ ratingCompleted(rating) {
 
 <AirbnbRating />
 
-<Rating
-  showRating
-  onFinishRating={this.ratingCompleted}
-  style={{ paddingVertical: 10 }}
-/>
-
 <AirbnbRating
   count={11}
   reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
   defaultRating={11}
   size={20}
+/>
+
+<Rating
+  showRating
+  onFinishRating={this.ratingCompleted}
+  style={{ paddingVertical: 10 }}
 />
 
 <Rating
@@ -75,6 +85,9 @@ ratingCompleted(rating) {
 />
 ```
 
+Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tree/master/example)  app for more detailed usage example.
+
+You can also run the Expo app locally.
 
 ## API
 
@@ -95,9 +108,6 @@ ratingCompleted(rating) {
 
 You can try it out with Exponent [here](https://expo.io/@monte9/react-native-ratings).
 
-### Example
-
-Look at the [`example`](https://github.com/Monte9/react-native-ratings/tree/master/example) folder to run the expo app locally.
 
 ## Motivation
 
