@@ -22,66 +22,57 @@ class SwipeRatingScreen extends React.Component {
         </View>
         <ScrollView style={styles.flex} contentContainerStyle={styles.center}>
           <Card title="DEFAULT" containerStyle={styles.card}>
-            <View style={styles.flexCenter}>
-              <Rating showRating={false} fractions={false} />
-            </View>
+            <Rating showRating={false} fractions={false} />
           </Card>
           <Card title="WITH RATING" containerStyle={styles.card}>
-            <View style={styles.flexCenter}>
-              <Rating showRating={true} fractions={false} />
-            </View>
+            <Rating showRating={true} fractions={false} />
           </Card>
           <Card title="WITH FRACTIONS" containerStyle={styles.card}>
-            <View style={styles.flexCenter}>
-              <Rating showRating={true} fractions={2} />
-            </View>
+            <Rating 
+              showRating={true} fractions={2} ratingTextColor="teal" 
+              onStartRating={() => console.log("started rating")}
+            />
           </Card>
           <Card title="CUSTOM RATING" containerStyle={styles.card}>
-            <View style={styles.flexCenter}>
-              <Rating
-                type="heart"
-                ratingCount={3}
-                fractions={2}
-                startingValue={1.57}
-                imageSize={40}
-                onFinishRating={this.ratingCompleted}
-                showRating
-                style={{ paddingVertical: 10 }}
-              />
-            </View>
+            <Rating
+              type="heart"
+              ratingCount={3}
+              fractions={2}
+              startingValue={1.57}
+              imageSize={40}
+              onFinishRating={this.ratingCompleted}
+              showRating
+              style={{ paddingVertical: 10 }}
+            />
           </Card>
           <Card title="CUSTOM TINT COLOR" containerStyle={styles.card}>
-            <View style={styles.flexCenter}>
-              <Rating showRating={true} fractions={false} tintColor="white" startingValue={3} />
-            </View>
+            <Rating showRating={true} fractions={false} tintColor="white" startingValue={3} />
           </Card>
           <Card title="CUSTOM IMAGE" containerStyle={styles.card}>
-            <View style={styles.flexCenter}>
-              <Rating
-                type="custom"
-                ratingImage={WATER_IMAGE}
-                ratingColor="#3498db"
-                ratingBackgroundColor="#ceee"
-                ratingCount={10}
-                imageSize={30}
-                onFinishRating={this.ratingCompleted}
-                showRating={false}
-                style={{ paddingVertical: 10 }}
-              />
-            </View>
+            <Rating
+              type="custom"
+              ratingImage={WATER_IMAGE}
+              ratingColor="#3498db"
+              ratingBackgroundColor="#ceee"
+              ratingCount={10}
+              imageSize={30}
+              onFinishRating={this.ratingCompleted}
+              showRating={false}
+              style={{ paddingVertical: 10 }}
+            />
           </Card>
           <Card title="DISABLED" containerStyle={styles.card}>
-            <View style={styles.flexCenter}>
-              <Rating
-                type="star"
-                fractions={1}
-                startingValue={3.6}
-                readonly
-                imageSize={40}
-                onFinishRating={this.ratingCompleted}
-                style={{ paddingVertical: 10 }}
-              />
-            </View>
+            <Rating
+              type="star"
+              fractions={1}
+              startingValue={3.6}
+              readonly
+              showRating
+              imageSize={40}
+              ratingTextColor="black"
+              onFinishRating={this.ratingCompleted}
+              style={{ paddingVertical: 10 }}
+            />
           </Card>
         </ScrollView>
       </SafeAreaView>
@@ -118,11 +109,6 @@ const styles = StyleSheet.create( {
   card: {
     width: '85%', 
     marginBottom: 20
-  },
-  flexCenter: {
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center'
   }
 });
 

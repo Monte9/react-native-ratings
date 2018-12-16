@@ -45,33 +45,26 @@ export default class SwipeRating extends Component {
     ratingBackgroundColor: 'white',
     ratingCount: 5,
     imageSize: 40,
-    onFinishRating: () => console.log('Rating finished. Attach a function here.'),
+    onFinishRating: () => console.log('Attach a onFinishRating function here.'),
     minValue: 0
   };
 
   constructor(props) {
     super(props);
-    const { onFinishRating, fractions } = this.props;
+    const { onStartRating, onFinishRating, fractions } = this.props;
     const position = new Animated.ValueXY();
 
     const panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
+      onPanResponderGrant: () => {
+        if (typeof onStartRating === 'function') {
+          onStartRating();
+        }
+      },
       onPanResponderMove: (event, gesture) => {
         const newPosition = new Animated.ValueXY();
-        let dx = 0;
-        if (gesture.dx < ((-this.props.ratingCount + 2 * this.props.minValue) * this.props.imageSize) / 2) {
-          dx = ((-this.props.ratingCount + 2 * this.props.minValue) * this.props.imageSize) / 2;
-        } else {
-          dx = gesture.dx;
-        }
-        newPosition.setValue({
-          x: dx,
-          y: 0
-        });
-        this.setState({
-          position: newPosition,
-          value: dx
-        });
+        newPosition.setValue({ x: gesture.dx, y: 0 });
+        this.setState({ position: newPosition, value: gesture.dx });
       },
       onPanResponderRelease: event => {
         const rating = this.getCurrentRating(this.state.value);
@@ -85,11 +78,7 @@ export default class SwipeRating extends Component {
       }
     });
 
-    this.state = {
-      panResponder,
-      position,
-      display: false
-    };
+    this.state = { panResponder, position, display: false };
   }
 
   async componentDidMount() {
@@ -212,28 +201,22 @@ export default class SwipeRating extends Component {
     }
 
     const newPosition = new Animated.ValueXY();
-    newPosition.setValue({
-      x: value,
-      y: 0
-    });
-    this.setState({
-      position: newPosition,
-      value
-    });
+    newPosition.setValue({ x: value, y: 0 });
+    this.setState({ position: newPosition, value });
   }
 
   displayCurrentRating() {
-    const { ratingCount, type, readonly } = this.props;
-    const color = TYPES[type].color;
+    const { ratingCount, type, readonly, ratingTextColor } = this.props;
+    const color = ratingTextColor || TYPES[type].color;
 
     return (
       <View style={styles.showRatingView}>
         <View style={styles.ratingView}>
-          <Text style={styles.ratingText}>Rating:</Text>
+          <Text style={[styles.ratingText, { color }]}>Rating:{' '}</Text>
           <Text style={[styles.currentRatingText, { color }]}>{this.getCurrentRating(this.state.value)}</Text>
-          <Text style={styles.maxRatingText}>/{ratingCount}</Text>
+          <Text style={[styles.maxRatingText, { color }]}>/{ratingCount}</Text>
         </View>
-        <View>{readonly && <Text style={styles.readonlyLabel}>(readonly)</Text>}</View>
+        <View>{readonly && <Text style={[styles.readonlyLabel, { color }]}>(readonly)</Text>}</View>
       </View>
     );
   }
@@ -269,13 +252,19 @@ export default class SwipeRating extends Component {
 
 const styles = StyleSheet.create({
   starsWrapper: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   starsInsideWrapper: {
     position: 'absolute',
     top: 0,
     left: 0,
-    flexDirection: 'row'
+    right: 0,
+    bottom: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   showRatingView: {
     flexDirection: 'column',
@@ -335,7 +324,9 @@ SwipeRating.propTypes = {
   ratingColor: PropTypes.string,
   ratingBackgroundColor: PropTypes.string,
   ratingCount: PropTypes.number,
+  ratingTextColor: PropTypes.string,
   imageSize: PropTypes.number,
+  onStartRating: PropTypes.func,
   onFinishRating: PropTypes.func,
   showRating: PropTypes.bool,
   style: ViewPropTypes.style,
