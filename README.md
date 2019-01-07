@@ -87,28 +87,44 @@ ratingCompleted(rating) {
 />
 ```
 
-Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tree/master/example)  app for more detailed usage example.
-
-You can also run the Expo app locally.
+Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tree/master/example/src) app for more detailed usage example.
 
 ## API
 
+### AirbnbRating
+
 | prop | default | type | description |
 | ---- | ---- | ----| ---- |
-| **onFinishRating** | none | function | Callback method when the user finishes rating. Gives you the final rating value as a whole number **(required)** |
-| type | star | string | Choose one of the built-in types: `star`, `rocket`, `bell`, `heart` or use type `custom` to render a custom image (optional) |
-| ratingImage | star | string | Pass in a custom image source; use this along with `type='custom'` prop above (optional) |
+| defaultRating | 3 | number | Initial value for the rating |
+| reviews | ['Terrible', 'Bad', 'Okay', 'Good', 'Great'] | string[] | Labels to show when each value is tapped e.g. If the first star is tapped, then value in index 0 will be used as the label |
+| count | 5 | number | Total number of ratings to display |
+| showRating | `true` | boolean | Determines if to show the reviews above the rating |
+| onFinishRating | none | function(value: number) | Callback method when the user finishes rating. Gives you the final rating value as a whole number |
+
+### RatingProps
+
+| prop | default | type | description |
+| ---- | ---- | ----| ---- |
+| type | `star` | string | Choose one of the built-in types: `star`, `rocket`, `bell`, `heart` or use type `custom` to render a custom image (optional) |
+| ratingImage | `star` | string | Pass in a custom image source; use this along with `type='custom'` prop above (optional) |
 | ratingColor | #f1c40f | string (color) | Pass in a custom fill-color for the rating icon; use this along with `type='custom'` prop above (optional) |
-| ratingBackgroundColor | white | string (color) | Pass in a custom background-fill-color for the rating icon; use this along with `type='custom'` prop above (optional) |
+| ratingBackgroundColor | `white` | string (color) | Pass in a custom background-fill-color for the rating icon; use this along with `type='custom'` prop above (optional) |
 | ratingCount | 5 | number | The number of rating images to display (optional) |
+| ratingTextColor | none | string | Color used for the text labels |
 | imageSize | 50 | number | The size of each rating image (optional) |
 | showRating | none | boolean | Displays the Built-in Rating UI to show the rating value in real-time (optional) |
-| style | none | function | Exposes style prop to add additonal styling to the container view (optional) |
+| readonly | false | boolean | Whether the rating can be modiefied by the user |
+| startingValue | `ratingCount/2` | number | The initial rating to render |
+| fractions | 2 | number | The number of decimal places for the rating value; must be between 0 and 20 |
+| minValue | 0 | number | The minimum value the user can select |
+| style | none | style | Exposes style prop to add additonal styling to the container view (optional) |
+| onStartRating | none | function | Callback method when the user starts rating |
+| onFinishRating | none | function(rating: number) | Callback method when the user finishes rating. Gives you the final rating value as a whole number (required) |
 
 
 ## Try it out
 
-You can try it out with Exponent [here](https://expo.io/@monte9/react-native-ratings).
+You can try it out with Expo [here](https://expo.io/@monte9/react-native-ratings). Or you can also run the [`example`](https://github.com/Monte9/react-native-ratings/tree/master/example) app locally.
 
 
 ## Motivation
