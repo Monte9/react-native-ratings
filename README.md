@@ -99,6 +99,7 @@ Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tre
 | reviews | ['Terrible', 'Bad', 'Okay', 'Good', 'Great'] | string[] | Labels to show when each value is tapped e.g. If the first star is tapped, then value in index 0 will be used as the label |
 | count | 5 | number | Total number of ratings to display |
 | showRating | `true` | boolean | Determines if to show the reviews above the rating |
+| isDisabled | false | boolean | Whether the rating can be modiefied by the user |
 | onFinishRating | none | function(value: number) | Callback method when the user finishes rating. Gives you the final rating value as a whole number |
 
 ### RatingProps
