@@ -58,7 +58,7 @@ export interface RatingProps {
   /**
    * Exposes style prop to add additonal styling to the container view
    */
-  style?: ViewPropTypes.style;
+  style?: typeof ViewPropTypes.style;
 
   /**
    * Whether the rating can be modiefied by the user
