@@ -166,12 +166,12 @@ export default class SwipeRating extends Component {
     const { fractions, imageSize, ratingCount } = this.props;
 
     const startingValue = ratingCount / 2;
-    let currentRating = 0;
+    let currentRating = (this.props.minValue) ? this.props.minValue : 0;
 
     if (value > (ratingCount * imageSize) / 2) {
       currentRating = ratingCount;
     } else if (value < (-ratingCount * imageSize) / 2) {
-      currentRating = 0;
+      currentRating = (this.props.minValue) ? this.props.minValue : 0;
     } else if (value < imageSize || value > imageSize) {
       currentRating = startingValue + value / imageSize;
       currentRating = !fractions ? Math.ceil(currentRating) : +currentRating.toFixed(fractions);
