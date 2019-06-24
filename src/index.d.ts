@@ -136,6 +136,13 @@ export interface AirbnbRatingProps {
    */
   size?: number;
 
+  /**
+   * Whether the rating can be modiefied by the user
+   *
+   * Default is false
+   */
+  isDisabled?: boolean;
+
 
   /**
    * Determines if to show the reviews above the rating
