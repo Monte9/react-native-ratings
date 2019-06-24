@@ -42,6 +42,11 @@ export interface RatingProps {
   ratingTextColor?: string;
 
   /**
+   * Color used for the background
+   */
+  tintColor?: string;
+
+  /**
    * The size of each rating image
    *
    * Default is 50
@@ -123,6 +128,14 @@ export interface AirbnbRatingProps {
    * Default is 5
    */
   count?: number;
+
+  /**
+   * Size of rating image
+   *
+   * Default is 40
+   */
+  size?: number;
+
 
   /**
    * Determines if to show the reviews above the rating
