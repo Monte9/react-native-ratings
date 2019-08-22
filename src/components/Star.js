@@ -2,7 +2,8 @@ import React, {PureComponent} from 'react';
 import {StyleSheet, Animated, TouchableOpacity} from 'react-native';
 
 const STAR_IMAGE = require( '../images/airbnb-star.png' );
-const STAR_SELECTED_IMAGE = require( '../images/airbnb-star-selected.png' );
+const STAR_FULL_IMAGE = require( '../images/airbnb-star-full.png' );
+const STAR_HALF_IMAGE = require( '../images/airbnb-star-half.png' );
 const STAR_SIZE = 40;
 
 export default class Star extends PureComponent {
@@ -38,30 +39,28 @@ export default class Star extends PureComponent {
   }
 
   render() {
-    const { fill, size, selectedColor, isDisabled } = this.props;
-    const starSource = fill && selectedColor === null ? STAR_SELECTED_IMAGE : STAR_IMAGE;
+    const { fill, size, selectedColor, isDisabled, half } = this.props;
+    let starSource;
+    if (fill) {
+      starSource = STAR_FULL_IMAGE;
+    } else if (half) {
+      starSource = STAR_HALF_IMAGE;
+    } else {
+      starSource = STAR_IMAGE;
+    }
 
     return (
       <TouchableOpacity activeOpacity={1} onPress={this.spring.bind( this )} disabled={isDisabled}>
         <Animated.Image
           source={starSource}
-          style={[
-            styles.starStyle,
-            {
-              tintColor: fill && selectedColor ? selectedColor : undefined,
-              width: size || STAR_SIZE,
-              height: size || STAR_SIZE,
-              transform: [{ scale: this.springValue }]
-            }
-          ]}
+          style={{
+            margin: (size || STAR_SIZE) / 12,
+            width: size || STAR_SIZE,
+            height: size || STAR_SIZE,
+            transform: [{ scale: this.springValue }]
+          }}
         />
       </TouchableOpacity>
     );
   }
 }
-
-const styles = StyleSheet.create( {
-  starStyle: {
-    margin: 3
-  }
-} );

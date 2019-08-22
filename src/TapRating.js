@@ -62,6 +62,7 @@ export default class TapRating extends Component {
           position={index + 1}
           starSelectedInPosition={this.starSelectedInPosition.bind(this)}
           fill={position >= index + 1}
+          half={position - index >= 0.5}
           {...this.props}
         />
       )
