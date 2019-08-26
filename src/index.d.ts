@@ -132,6 +132,13 @@ export interface AirbnbRatingProps {
   showRating?: boolean;
 
   /**
+   * Style for star image component
+   *
+   * Default is true
+   */
+  starStyle?: ImageStyle;
+
+  /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
   onFinishRating?( value: number ): void;
