@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ImageURISource, ViewPropTypes } from 'react-native';
+import { ImageStyle, ImageURISource, ViewPropTypes } from 'react-native';
 
 export interface RatingProps {
 
