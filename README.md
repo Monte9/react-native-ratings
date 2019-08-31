@@ -87,7 +87,7 @@ ratingCompleted(rating) {
 />
 ```
 
-Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tree/master/example/src) app for more detailed usage example.
+Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tree/master/react_native_ratings_example) app for more detailed usage example.
 
 ## API
 
@@ -128,7 +128,7 @@ Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tre
 
 ## Try it out
 
-You can try it out with Expo [here](https://expo.io/@monte9/react-native-ratings). Or you can also run the [`example`](https://github.com/Monte9/react-native-ratings/tree/master/example) app locally.
+You can try it out with Expo [here](https://expo.io/@monte9/react-native-ratings). Or you can also run the [`example`](https://github.com/Monte9/react-native-ratings/tree/master/react_native_ratings_example) app locally.
 
 
 ## Motivation
