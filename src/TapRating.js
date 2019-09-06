@@ -18,6 +18,18 @@ export default class TapRating extends Component {
     reviewSize: 25
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { defaultRating } = nextProps;
+
+    if (defaultRating !== prevState.defaultRating) {
+      return {
+        position: defaultRating,
+        defaultRating
+      }
+    }
+    return null;
+  }
+
   constructor() {
     super()
 
@@ -30,12 +42,6 @@ export default class TapRating extends Component {
     const { defaultRating } = this.props
 
     this.setState({ position: defaultRating })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.defaultRating !== this.props.defaultRating) {
-      this.setState({ position: nextProps.defaultRating })
-    }
   }
 
   renderStars(rating_array) {

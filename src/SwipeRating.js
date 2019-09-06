@@ -96,9 +96,9 @@ export default class SwipeRating extends Component {
     this.setCurrentRating(this.props.startingValue);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.startingValue !== this.props.startingValue) {
-      this.setCurrentRating(nextProps.startingValue);
+  componentDidUpdate(prevProps) {
+    if (this.props.startingValue !== prevProps.startingValue) {
+      this.setCurrentRating(this.props.startingValue);
     }
   }
 
