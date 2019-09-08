@@ -12,7 +12,6 @@ export default class TapRating extends Component {
     defaultRating: 3,
     reviews: ["Terrible", "Bad", "Okay", "Good", "Great"],
     count: 5,
-    onFinishRating: () => console.log('Rating selected. Attach a function here.'),
     showRating: true,
     reviewColor: 'rgba(230, 196, 46, 1)',
     reviewSize: 25
@@ -53,7 +52,7 @@ export default class TapRating extends Component {
   starSelectedInPosition(position) {
     const { onFinishRating } = this.props
 
-    onFinishRating(position);
+    if (typeof onFinishRating === 'function') onFinishRating(position);
 
     this.setState({ position: position })
   }
