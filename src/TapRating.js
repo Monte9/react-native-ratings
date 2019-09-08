@@ -56,6 +56,11 @@ export default class TapRating extends Component {
     const { position } = this.state
     const { count, reviews, showRating, reviewColor, reviewSize } = this.props
     const rating_array = []
+    const starContainerStyle = [styles.starContainer]
+
+    if (this.props.starContainerStyle) {
+        starContainerStyle.push(this.props.starContainerStyle);
+    }
 
     _.times(count, index => {
       rating_array.push(
@@ -76,7 +81,7 @@ export default class TapRating extends Component {
             {reviews[position - 1]}
           </Text>
         }
-        <View style={styles.starContainer}>
+        <View style={starContainerStyle}>
           {this.renderStars(rating_array)}
         </View>
       </View>

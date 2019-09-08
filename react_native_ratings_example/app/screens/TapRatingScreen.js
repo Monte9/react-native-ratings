@@ -39,6 +39,17 @@ class TapRatingScreen extends Component {
           <Card title="DISABLED" containerStyle={styles.card}>
             <AirbnbRating isDisabled={true} showRating={false} defaultRating={4} />
           </Card>
+          <Card title="CUSTOM CONTAINER STYLE" containerStyle={styles.card}>
+            <AirbnbRating 
+                starContainerStyle={{
+                    alignSelf: "flex-start",
+                    backgroundColor: "black"
+                }} 
+                isDisabled={true} 
+                showRating={false} 
+                defaultRating={4}
+            />
+          </Card>
         </ScrollView>
       </SafeAreaView>
     );
