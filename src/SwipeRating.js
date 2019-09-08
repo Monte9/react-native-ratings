@@ -45,7 +45,6 @@ export default class SwipeRating extends Component {
     ratingBackgroundColor: 'white',
     ratingCount: 5,
     imageSize: 40,
-    onFinishRating: () => console.log('Attach a onFinishRating function here.'),
     minValue: 0
   };
 
@@ -73,7 +72,7 @@ export default class SwipeRating extends Component {
             // 'round up' to the nearest rating image
             this.setCurrentRating(rating);
           }
-          onFinishRating(rating);
+          if (typeof onFinishRating === 'function') onFinishRating(rating);
         }
       }
     });
