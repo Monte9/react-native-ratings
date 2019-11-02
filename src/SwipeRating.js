@@ -44,6 +44,7 @@ export default class SwipeRating extends Component {
     ratingColor: '#f1c40f',
     ratingBackgroundColor: 'white',
     ratingCount: 5,
+    showReadOnlyText: true,
     imageSize: 40,
     minValue: 0
   };
@@ -205,7 +206,7 @@ export default class SwipeRating extends Component {
   }
 
   displayCurrentRating() {
-    const { ratingCount, type, readonly, ratingTextColor } = this.props;
+    const { ratingCount, type, readonly, showReadOnlyText, ratingTextColor } = this.props;
     const color = ratingTextColor || TYPES[type].color;
 
     return (
@@ -215,7 +216,7 @@ export default class SwipeRating extends Component {
           <Text style={[styles.currentRatingText, { color }]}>{this.getCurrentRating(this.state.value)}</Text>
           <Text style={[styles.maxRatingText, { color }]}>/{ratingCount}</Text>
         </View>
-        <View>{readonly && <Text style={[styles.readonlyLabel, { color }]}>(readonly)</Text>}</View>
+        <View>{readonly && showReadOnlyText && <Text style={[styles.readonlyLabel, { color }]}>(readonly)</Text>}</View>
       </View>
     );
   }
@@ -330,6 +331,7 @@ SwipeRating.propTypes = {
   showRating: PropTypes.bool,
   style: ViewPropTypes.style,
   readonly: PropTypes.bool,
+  showReadOnlyText: PropTypes.bool,
   startingValue: PropTypes.number,
   fractions: fractionsType,
   minValue: PropTypes.number
