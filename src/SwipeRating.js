@@ -3,8 +3,8 @@ import times from 'lodash/times';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { 
-  View, Text, Animated, PanResponder, Image, 
+import {
+  View, Text, Animated, PanResponder, Image,
   StyleSheet, Platform, ViewPropTypes
 } from 'react-native';
 
@@ -64,7 +64,9 @@ export default class SwipeRating extends Component {
       onPanResponderMove: (event, gesture) => {
         const newPosition = new Animated.ValueXY();
         newPosition.setValue({ x: gesture.dx, y: 0 });
-        this.setState({ position: newPosition, value: gesture.dx });
+        if (this.state.isComponentMounted) {
+          this.setState({position: newPosition, value: gesture.dx});
+        }
       },
       onPanResponderRelease: event => {
         const rating = this.getCurrentRating(this.state.value);
@@ -78,7 +80,7 @@ export default class SwipeRating extends Component {
       }
     });
 
-    this.state = { panResponder, position, display: false };
+    this.state = { panResponder, position, display: false, isComponentMounted: false };
   }
 
   async componentDidMount() {
@@ -88,7 +90,7 @@ export default class SwipeRating extends Component {
       const ROCKET_IMAGE = await require('./images/rocket.png');
       const BELL_IMAGE = await require('./images/bell.png');
 
-      this.setState({ display: true })
+      this.setState({ display: true, isComponentMounted: false });
     } catch(err) {
       console.log(err)
     }
@@ -202,7 +204,9 @@ export default class SwipeRating extends Component {
 
     const newPosition = new Animated.ValueXY();
     newPosition.setValue({ x: value, y: 0 });
-    this.setState({ position: newPosition, value });
+    if (this.state.isComponentMounted) {
+      this.setState({position: newPosition, value});
+    }
   }
 
   displayCurrentRating() {
@@ -248,6 +252,11 @@ export default class SwipeRating extends Component {
       null
     );
   }
+
+  componentWillUnmount() {
+    this.setState({ isComponentMounted: false });
+  }
+
 }
 
 const styles = StyleSheet.create({
