@@ -329,7 +329,7 @@ const fractionsType = (props, propName, componentName) => {
 
 SwipeRating.propTypes = {
   type: PropTypes.string,
-  ratingImage: Image.propTypes.source,
+  ratingImage: Image.propTypes ? Image.propTypes.source : PropTypes.any,
   ratingColor: PropTypes.string,
   ratingBackgroundColor: PropTypes.string,
   ratingCount: PropTypes.number,
@@ -338,7 +338,7 @@ SwipeRating.propTypes = {
   onStartRating: PropTypes.func,
   onFinishRating: PropTypes.func,
   showRating: PropTypes.bool,
-  style: ViewPropTypes.style,
+  style: ViewPropTypes ? ViewPropTypes.style : PropTypes.any,
   readonly: PropTypes.bool,
   showReadOnlyText: PropTypes.bool,
   startingValue: PropTypes.number,
