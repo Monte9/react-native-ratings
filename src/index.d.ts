@@ -1,8 +1,5 @@
-import * as React from 'react';
-import { ImageStyle, ImageURISource, ViewPropTypes } from 'react-native';
 
 export interface RatingProps {
-
   /**
    * Graphic used for represent a rating
    *
@@ -99,13 +96,12 @@ export interface RatingProps {
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
-  onFinishRating?( rating: number ): void;
+  onFinishRating?(rating: number): void;
 }
 
 export class Rating extends React.Component<RatingProps> {}
 
 export interface AirbnbRatingProps {
-
   /**
    * Initial value for the rating
    *
@@ -137,12 +133,32 @@ export interface AirbnbRatingProps {
   size?: number;
 
   /**
+   * Pass in a custom fill-color for the rating icon
+   *
+   * Default is #f1c40f
+   */
+  selectedColor?: string;
+
+  /**
+   * Pass in a custom text color for the review text
+   *
+   * Default is #f1c40f
+   */
+  reviewColor?: string;
+
+  /**
+   * Pass in a custom font size for the review text
+   *
+   * Default is 25
+   */
+  reviewSize?: number;
+
+  /**
    * Whether the rating can be modiefied by the user
    *
    * Default is false
    */
   isDisabled?: boolean;
-
 
   /**
    * Determines if to show the reviews above the rating
@@ -159,9 +175,16 @@ export interface AirbnbRatingProps {
   starStyle?: ImageStyle;
 
   /**
+   * Custom styles applied to the star container
+   *
+   * Default is null
+   */
+  starStyle?: ViewStyle;
+
+  /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
-  onFinishRating?( value: number ): void;
+  onFinishRating?(value: number): void;
 }
 
 export class AirbnbRating extends React.Component<AirbnbRatingProps> {}
