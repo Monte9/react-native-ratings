@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { ImageStyle, ImageURISource, ViewPropTypes } from 'react-native';
+import PropTypes from 'prop-types';
+import { ImageStyle, ImageURISource } from 'react-native';
 
 export interface RatingProps {
 
@@ -63,7 +64,7 @@ export interface RatingProps {
   /**
    * Exposes style prop to add additonal styling to the container view
    */
-  style?: typeof ViewPropTypes.style;
+  style?: typeof PropTypes.object;
 
   /**
    * Whether the rating can be modiefied by the user
