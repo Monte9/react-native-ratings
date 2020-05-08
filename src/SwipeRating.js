@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import {
   View, Text, Animated, PanResponder, Image,
-  StyleSheet, Platform, ViewPropTypes
+  StyleSheet, Platform
 } from 'react-native';
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
@@ -329,7 +329,7 @@ const fractionsType = (props, propName, componentName) => {
 
 SwipeRating.propTypes = {
   type: PropTypes.string,
-  ratingImage: Image.propTypes.source,
+  ratingImage: PropTypes.node,
   ratingColor: PropTypes.string,
   ratingBackgroundColor: PropTypes.string,
   ratingCount: PropTypes.number,
@@ -338,7 +338,7 @@ SwipeRating.propTypes = {
   onStartRating: PropTypes.func,
   onFinishRating: PropTypes.func,
   showRating: PropTypes.bool,
-  style: ViewPropTypes.style,
+  style: PropTypes.object,
   readonly: PropTypes.bool,
   showReadOnlyText: PropTypes.bool,
   startingValue: PropTypes.number,
