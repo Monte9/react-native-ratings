@@ -90,7 +90,7 @@ export default class SwipeRating extends Component {
       const ROCKET_IMAGE = await require('./images/rocket.png');
       const BELL_IMAGE = await require('./images/bell.png');
 
-      this.setState({ display: true, isComponentMounted: false });
+      this.setState({ display: true, isComponentMounted: true });
     } catch(err) {
       console.log(err)
     }
