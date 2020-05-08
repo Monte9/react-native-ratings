@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { 
   Text, View, ScrollView, SafeAreaView, Platform, StyleSheet
 } from 'react-native';
-import { Card } from 'react-native-elements';
+import Card from '../Card';
 import { AirbnbRating } from 'react-native-ratings';
 
 class TapRatingScreen extends Component {
