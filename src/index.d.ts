@@ -1,3 +1,6 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { ImageStyle, ImageURISource, ViewStyle } from 'react-native';
 
 export interface RatingProps {
   /**
@@ -60,7 +63,7 @@ export interface RatingProps {
   /**
    * Exposes style prop to add additonal styling to the container view
    */
-  style?: typeof ViewPropTypes.style;
+  style?: typeof PropTypes.object;
 
   /**
    * Whether the rating can be modiefied by the user
@@ -180,6 +183,19 @@ export interface AirbnbRatingProps {
    * Default is null
    */
   starStyle?: ViewStyle;
+   
+  /** Inactive image for star component
+   *
+   * Default is undefined (use built-in star)
+   */
+  image?: ImageURISource;
+
+  /**
+   * Active image for star component
+   *
+   * Default is undefined (use built-in star)
+   */
+  selectedImage?: ImageURISource;
 
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
