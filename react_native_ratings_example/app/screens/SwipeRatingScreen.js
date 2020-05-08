@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { 
   Text, View, ScrollView, SafeAreaView, Platform, StyleSheet
 } from 'react-native';
-import { Card } from 'react-native-elements';
+import Card from '../Card';
 import { Rating } from 'react-native-ratings';
 
 const WATER_IMAGE = require( '../../assets/water.png' );

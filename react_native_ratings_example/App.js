@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import { Icon } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import TapRatingScreen from './app/screens/TapRatingScreen';
 import SwipeRatingScreen from './app/screens/SwipeRatingScreen';
@@ -10,7 +10,7 @@ const App = createBottomTabNavigator({
     screen: TapRatingScreen,
     navigationOptions: {
       tabBarIcon: ({ focused, tintColor }) => {
-        return <Icon type="ionicon" name="ios-star-half" size={25} color={tintColor} />;
+        return <Icon name="ios-star-half" size={25} color={tintColor} />;
       },
     },
   },
@@ -18,7 +18,7 @@ const App = createBottomTabNavigator({
     screen: SwipeRatingScreen,
     navigationOptions: {
       tabBarIcon: ({ focused, tintColor }) => {
-        return <Icon type="ionicon" name="ios-star-outline" size={25} color={tintColor} />;
+        return <Icon name="ios-star-outline" size={25} color={tintColor} />;
       },
     },
   }
