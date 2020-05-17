@@ -1,6 +1,5 @@
-import times from 'lodash/times';
-
 import React, { Component } from 'react';
+import times from 'lodash/times';
 import PropTypes from 'prop-types';
 
 import {
