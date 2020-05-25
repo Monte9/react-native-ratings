@@ -163,6 +163,13 @@ export interface AirbnbRatingProps {
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
   onFinishRating?( value: number ): void;
+  
+  /**
+   * Color value for filled stars.
+   *
+   * Default is #004666
+   */
+  selectedColor?: string;
 }
 
 export class AirbnbRating extends React.Component<AirbnbRatingProps> {}
