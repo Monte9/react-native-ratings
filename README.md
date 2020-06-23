@@ -38,7 +38,7 @@ Install the package using yarn or npm:
 ```yarn add react-native-ratings```
 
   OR
-  
+
 ```npm install --save react-native-ratings```
 
 ## Usage
@@ -116,6 +116,7 @@ Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tre
 | ratingBackgroundColor | `white` | string (color) | Pass in a custom background-fill-color for the rating icon; use this along with `type='custom'` prop above (optional) |
 | ratingCount | 5 | number | The number of rating images to display (optional) |
 | ratingTextColor | none | string | Color used for the text labels |
+| emptyBackgroundColor | `white` | string | Color used for the unfilled proportion background |
 | imageSize | 50 | number | The size of each rating image (optional) |
 | showRating | none | boolean | Displays the Built-in Rating UI to show the rating value in real-time (optional) |
 | readonly | false | boolean | Whether the rating can be modiefied by the user |
