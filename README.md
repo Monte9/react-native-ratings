@@ -99,6 +99,7 @@ Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tre
 | reviews | ['Terrible', 'Bad', 'Okay', 'Good', 'Great'] | string[] | Labels to show when each value is tapped e.g. If the first star is tapped, then value in index 0 will be used as the label |
 | count | 5 | number | Total number of ratings to display |
 | selectedColor | #f1c40f | string (color) | Pass in a custom fill-color for the rating icon |
+| unselectedColor | #8e8e8c | string (color) | Pass in a custom fill-color for the unselecred rating icon |
 | reviewColor | #f1c40f | string (color) | Pass in a custom text color for the review text |
 | reviewSize | 25 | number | Pass in a custom font size for the review text |
 | showRating | `true` | boolean | Determines if to show the reviews above the rating |
