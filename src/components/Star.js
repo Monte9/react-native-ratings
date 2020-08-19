@@ -30,7 +30,7 @@ export default class Star extends PureComponent {
       {
         toValue: 1,
         friction: 2,
-        tension: 1
+        tension: 1,
         useNativeDriver: true
       }
     ).start();
