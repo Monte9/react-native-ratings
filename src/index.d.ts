@@ -160,6 +160,41 @@ export interface AirbnbRatingProps {
   starStyle?: ImageStyle;
 
   /**
+   * Inactive image for star component
+   *
+   * Default is undefined (use built-in star)
+   */
+  image?: ImageURISource;
+
+  /**
+   * Active image for star component
+   *
+   * Default is undefined (use built-in star)
+   */
+  selectedImage?: ImageURISource;
+
+  /**
+   * Pass in a custom text color for the review text
+   *
+   * Default is '#f1c40f'
+   */
+  reviewColor?: string;
+
+  /**
+   * Pass in a custom tint-color for the rating icon when selected
+   *
+   * Default is '#f1c40f'
+   */
+  selectedColor?: string;
+
+  /**
+   * Pass in a custom tint-color for the rating icon when unselected
+   *
+   * Default is '#000000'
+   */
+  unselectedColor?: string;
+
+  /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
   onFinishRating?( value: number ): void;
