@@ -2,3 +2,6 @@ node_modules
 .DS_Store
 *.log
 yarn-error.log
+.expo
+.vscode
+demo
