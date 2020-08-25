@@ -47,7 +47,6 @@ Install the package using yarn or npm:
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
 const WATER_IMAGE = require('./water.png')
-const WATER_IMAGE_FILLED = require('./water_filled.png')
 
 ratingCompleted(rating) {
   console.log("Rating is: " + rating)
@@ -60,8 +59,6 @@ ratingCompleted(rating) {
   reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
   defaultRating={11}
   size={20}
-  image={WATER_IMAGE}
-  selectedImage={WATER_IMAGE_FILLED}
 />
 
 <Rating
@@ -108,8 +105,6 @@ Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tre
 | isDisabled | false | boolean | Whether the rating can be modiefied by the user |
 | onFinishRating | none | function(value: number) | Callback method when the user finishes rating. Gives you the final rating value as a whole number |
 | starContainerStyle | none | object or stylesheet | Custom styles applied to the star container |
-| image | none | image source | Image to be displayed as the unfilled rating icon |
-| selectedImage | none | image source | Image to be displayed as the filled rating icon |
 
 ### RatingProps
 
