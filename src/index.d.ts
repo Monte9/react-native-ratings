@@ -189,7 +189,7 @@ export interface AirbnbRatingProps {
   /**
    * Pass in a custom tint-color for the rating icon when unselected
    *
-   * Default is '#000000'
+   * Default is '#ffffff'
    */
   unselectedColor?: string;
 
