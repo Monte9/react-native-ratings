@@ -1,0 +1,32 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "clean-install": "rm -rf node_modules && yarn",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^10.0.0",
+    "@react-navigation/bottom-tabs": "^5.4.4",
+    "@react-navigation/native": "^5.4.0",
+    "expo": "^38.0.0",
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "react-native-gesture-handler": "~1.6.0",
+    "react-native-reanimated": "~1.9.0",
+    "react-native-safe-area-context": "~3.0.7",
+    "react-native-screens": "~2.9.0",
+    "react-native-web": "~0.11.7",
+    "react-navigation": "^4.3.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-preset-expo": "^8.2.3"
+  },
+  "private": true
+}

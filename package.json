@@ -1,6 +1,6 @@
 {
   "name": "react-native-ratings",
-  "version": "6.5.0",
+  "version": "7.3.0",
   "description": "The standard Ratings component for React Native",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
@@ -23,23 +23,25 @@
     "lint": "eslint src/",
     "clean-install": "rm -rf node_modules && yarn"
   },
-  "peerDependencies": {
-    "react": "^16.0.0"
-  },
   "author": "Monte Thakkar",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Monte9/react-native-ratings/issues"
   },
   "homepage": "https://github.com/Monte9/react-native-ratings#readme",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2"
+  },
   "devDependencies": {
     "eslint": "^5.6.1",
     "eslint-plugin-react": "^7.11.1",
-    "react": "^16.0.0",
-    "react-native": "^0.57.1"
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "react-native": "^0.61.4"
   },
-  "dependencies": {
-    "lodash": "^4.17.4",
-    "prop-types": "^15.5.10"
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
   }
 }

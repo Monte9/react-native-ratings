@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { ImageStyle, ImageURISource, ViewPropTypes } from 'react-native';
+import PropTypes from 'prop-types';
+import { ImageStyle, ImageURISource } from 'react-native';
 
 export interface RatingProps {
 
@@ -63,7 +64,7 @@ export interface RatingProps {
   /**
    * Exposes style prop to add additonal styling to the container view
    */
-  style?: typeof ViewPropTypes.style;
+  style?: typeof PropTypes.object;
 
   /**
    * Whether the rating can be modiefied by the user
@@ -180,13 +181,6 @@ export interface AirbnbRatingProps {
   reviewColor?: string;
 
   /**
-   * Pass in a custom tint-color for the rating icon when selected
-   *
-   * Default is '#f1c40f'
-   */
-  selectedColor?: string;
-
-  /**
    * Pass in a custom tint-color for the rating icon when unselected
    *
    * Default is '#ffffff'
@@ -197,6 +191,13 @@ export interface AirbnbRatingProps {
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
   onFinishRating?( value: number ): void;
+
+  /**
+   * Color value for filled stars.
+   *
+   * Default is #004666
+   */
+  selectedColor?: string;
 }
 
 export class AirbnbRating extends React.Component<AirbnbRatingProps> {}
