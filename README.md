@@ -114,6 +114,7 @@ Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tre
 | ratingImage | `star` | string | Pass in a custom image source; use this along with `type='custom'` prop above (optional) |
 | ratingColor | #f1c40f | string (color) | Pass in a custom fill-color for the rating icon; use this along with `type='custom'` prop above (optional) |
 | ratingBackgroundColor | `white` | string (color) | Pass in a custom background-fill-color for the rating icon; use this along with `type='custom'` prop above (optional) |
+| tintColor | none | string | Color used to change the background of the rating icon (optional)|
 | ratingCount | 5 | number | The number of rating images to display (optional) |
 | ratingTextColor | none | string | Color used for the text labels |
 | imageSize | 50 | number | The size of each rating image (optional) |
@@ -125,7 +126,6 @@ Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tre
 | style | none | style | Exposes style prop to add additonal styling to the container view (optional) |
 | onStartRating | none | function | Callback method when the user starts rating |
 | onFinishRating | none | function(rating: number) | Callback method when the user finishes rating. Gives you the final rating value as a whole number (required) |
-
 
 ## Try it out
 
