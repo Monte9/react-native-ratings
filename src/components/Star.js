@@ -7,7 +7,8 @@ const STAR_SIZE = 40;
 
 export default class Star extends PureComponent {
   static defaultProps = {
-    selectedColor: '#f1c40f'
+    selectedColor: '#f1c40f',
+    unSelectedColor: "#BDC3C7",
   };
 
   constructor() {
@@ -39,7 +40,7 @@ export default class Star extends PureComponent {
   }
 
   render() {
-    const { fill, size, selectedColor, isDisabled, starStyle } = this.props;
+    const { fill, size, selectedColor,unSelectedColor, isDisabled, starStyle } = this.props;
     const starSource = fill && selectedColor === null ? STAR_SELECTED_IMAGE : STAR_IMAGE;
 
     return (
@@ -49,7 +50,7 @@ export default class Star extends PureComponent {
           style={[
             styles.starStyle,
             {
-              tintColor: fill && selectedColor ? selectedColor : undefined,
+              tintColor: fill && selectedColor ? selectedColor : unSelectedColor,
               width: size || STAR_SIZE,
               height: size || STAR_SIZE,
               transform: [{ scale: this.springValue }]
