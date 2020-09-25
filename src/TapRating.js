@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -44,9 +42,7 @@ export default class TapRating extends Component {
   }
 
   renderStars(rating_array) {
-    return _.map(rating_array, (star, index) => {
-      return star
-    })
+    return rating_array.map((star) => star)
   }
 
   starSelectedInPosition(position) {
@@ -67,7 +63,7 @@ export default class TapRating extends Component {
         starContainerStyle.push(this.props.starContainerStyle);
     }
 
-    _.times(count, index => {
+    Array.apply(null, Array(count)).map((_, index) => (
       rating_array.push(
         <Star
           key={index}
@@ -77,7 +73,7 @@ export default class TapRating extends Component {
           {...this.props}
         />
       )
-    })
+    ))
 
     return (
       <View style={styles.ratingContainer}>
