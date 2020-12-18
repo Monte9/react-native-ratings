@@ -49,7 +49,7 @@ export default class Star extends PureComponent {
           style={[
             styles.starStyle,
             {
-              tintColor: fill && selectedColor ? selectedColor : undefined,
+              tintColor: fill && selectedColor ? selectedColor : '#e5e5e5',
               width: size || STAR_SIZE,
               height: size || STAR_SIZE,
               transform: [{ scale: this.springValue }]
