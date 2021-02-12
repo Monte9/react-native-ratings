@@ -28,5 +28,6 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-preset-expo": "^8.2.3"
   },
-  "private": true
+  "private": true,
+  "version": "0.1.0"
 }
