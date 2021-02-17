@@ -101,6 +101,7 @@ Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tre
 | selectedColor | #f1c40f | string (color) | Pass in a custom fill-color for the rating icon |
 | unSelectedColor | #BDC3C7 | string (color) | Pass in a custom not fill-color for the rating icon |
 | reviewColor | #f1c40f | string (color) | Pass in a custom text color for the review text |
+| size | 40 | number | The size of each rating image (optional) |
 | reviewSize | 25 | number | Pass in a custom font size for the review text |
 | showRating | `true` | boolean | Determines if to show the reviews above the rating |
 | isDisabled | false | boolean | Whether the rating can be modiefied by the user |
