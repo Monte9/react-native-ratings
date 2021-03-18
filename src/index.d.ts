@@ -1,15 +1,14 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { ImageStyle, ImageURISource } from 'react-native';
+import * as React from "react";
+import PropTypes from "prop-types";
+import { ImageStyle, ImageURISource } from "react-native";
 
 export interface RatingProps {
-
   /**
    * Graphic used for represent a rating
    *
    * Default is 'star'
    */
-  type?: 'star' | 'rocket' | 'bell' | 'heart' | 'custom';
+  type?: "star" | "rocket" | "bell" | "heart" | "custom";
 
   /**
    * Pass in a custom image source; use this along with type='custom' prop above
@@ -64,7 +63,7 @@ export interface RatingProps {
   /**
    * Exposes style prop to add additonal styling to the container view
    */
-  style?: typeof PropTypes.object;
+  style?: PropTypes.object;
 
   /**
    * Whether the rating can be modiefied by the user
@@ -100,13 +99,12 @@ export interface RatingProps {
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
-  onFinishRating?( rating: number ): void;
+  onFinishRating?(rating: number): void;
 }
 
 export class Rating extends React.Component<RatingProps> {}
 
 export interface AirbnbRatingProps {
-
   /**
    * Initial value for the rating
    *
@@ -144,7 +142,6 @@ export interface AirbnbRatingProps {
    */
   isDisabled?: boolean;
 
-
   /**
    * Determines if to show the reviews above the rating
    *
@@ -162,16 +159,16 @@ export interface AirbnbRatingProps {
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
-  onFinishRating?( value: number ): void;
-  
+  onFinishRating?(value: number): void;
+
   /**
    * Color value for filled stars.
    *
    * Default is #004666
    */
   selectedColor?: string;
-  
-    /**
+
+  /**
    * Color value for unfilled stars.
    *
    * Default is #BDC3C7
