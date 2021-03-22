@@ -5,6 +5,7 @@ import {
 import { AirbnbRating } from 'react-native-ratings';
 
 import Card from './Card';
+const WATER_IMAGE = require( '../assets/water.png' );
 
 class TapRatingScreen extends Component {
   ratingCompleted( rating ) {
@@ -33,6 +34,12 @@ class TapRatingScreen extends Component {
               defaultRating={5}
               size={20}
               onFinishRating={this.ratingCompleted}
+            />
+          </Card>
+          <Card title="CUSTOM IMAGE" containerStyle={styles.card}>
+            <AirbnbRating
+              onFinishRating={this.ratingCompleted}
+              starImage={WATER_IMAGE}
             />
           </Card>
           <Card title="CUSTOM COLOR" containerStyle={styles.card}>
