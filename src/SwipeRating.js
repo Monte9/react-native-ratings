@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import times from 'lodash/times';
 import PropTypes from 'prop-types';
 
@@ -39,7 +39,7 @@ const TYPES = {
 export default class SwipeRating extends Component {
   static defaultProps = {
     type: 'star',
-    ratingImage: require( './images/star.png' ),
+    ratingImage: STAR_IMAGE,
     ratingColor: '#f1c40f',
     ratingBackgroundColor: 'white',
     ratingCount: 5,
@@ -68,7 +68,7 @@ export default class SwipeRating extends Component {
           this.setState( {position: newPosition, value: gesture.dx} );
         }
       },
-      onPanResponderRelease: event => {
+      onPanResponderRelease: () => {
         const rating = this.getCurrentRating( this.state.value );
 
         if ( rating >= this.props.minValue ) {
@@ -76,7 +76,9 @@ export default class SwipeRating extends Component {
             // 'round up' to the nearest rating image
             this.setCurrentRating( rating );
           }
-          if ( typeof onFinishRating === 'function' ) {onFinishRating( rating );}
+          if ( typeof onFinishRating === 'function' ) {
+            onFinishRating( rating );
+          }
         }
       }
     } );
@@ -84,15 +86,11 @@ export default class SwipeRating extends Component {
     this.state = { panResponder, position, display: false, isComponentMounted: false };
   }
 
-  async componentDidMount() {
+ componentDidMount() {
     try {
-      const STAR_IMAGE = await require( './images/star.png' );
-      const HEART_IMAGE = await require( './images/heart.png' );
-      const ROCKET_IMAGE = await require( './images/rocket.png' );
-      const BELL_IMAGE = await require( './images/bell.png' );
-
       this.setState( { display: true, isComponentMounted: true } );
     } catch ( err ) {
+      // eslint-disable-next-line no-console
       console.log( err )
     }
 
@@ -165,7 +163,6 @@ export default class SwipeRating extends Component {
   }
 
   getCurrentRating( value ) {
-    // Const { value } = this.state;
     const { fractions, imageSize, ratingCount } = this.props;
 
     const startingValue = ratingCount / 2;
@@ -177,15 +174,16 @@ export default class SwipeRating extends Component {
     } else if ( value < -ratingCount * imageSize / 2 ) {
       currentRating = this.props.minValue ? this.props.minValue : 0;
     } else if ( value <= imageSize || value > imageSize ) {
-      currentRating = startingValue + value / imageSize;
-      currentRating = !fractions ? Math.ceil( currentRating ) : Number( currentRating.toFixed( fractions ) );
+      currentRating = ( startingValue + value ) / imageSize;
+      currentRating = fractions ? Number( currentRating.toFixed( fractions ) ) : Math.ceil( currentRating );
     } else {
-      currentRating = !fractions ? Math.ceil( startingValue ) : Number( startingValue.toFixed( fractions ) );
+      currentRating = fractions ? Number( startingValue.toFixed( fractions ) ) : Math.ceil( startingValue );
     }
 
     return currentRating;
   }
 
+  // eslint-disable-next-line max-statements
   setCurrentRating( rating ) {
     const { imageSize, ratingCount } = this.props;
 
