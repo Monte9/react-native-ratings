@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Component } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -45,7 +44,7 @@ return null;
   }
 
   renderStars( rating_array ) {
-    return _.map( rating_array, ( star, index ) => {
+    return _.map( rating_array, star => {
       return star
     } )
   }
@@ -53,7 +52,9 @@ return null;
   starSelectedInPosition( position ) {
     const { onFinishRating } = this.props
 
-    if ( typeof onFinishRating === 'function' ) {onFinishRating( position );}
+    if ( typeof onFinishRating === 'function' ) {
+      onFinishRating( position );
+    }
 
     this.setState( { position } )
   }
