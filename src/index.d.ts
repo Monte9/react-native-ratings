@@ -150,6 +150,11 @@ export interface AirbnbRatingProps {
   showRating?: boolean;
 
   /**
+   * Pass in a custom base image source
+   */
+  starImage?: ImageURISource;
+
+  /**
    * Style for star image component
    *
    * Default is true
