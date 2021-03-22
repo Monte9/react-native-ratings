@@ -21,6 +21,8 @@
   ],
   "scripts": {
     "lint": "eslint src/",
+    "lint-demo": "eslint demo/src/",
+    "lint-all": "yarn lint && yarn lint-demo",
     "clean-install": "rm -rf node_modules && yarn"
   },
   "author": "Monte Thakkar",
