@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {
   Text, View, ScrollView, SafeAreaView, Platform, StyleSheet
 } from 'react-native';
@@ -8,6 +8,7 @@ import Card from './Card';
 
 class TapRatingScreen extends Component {
   ratingCompleted( rating ) {
+    // eslint-disable-next-line no-console
     console.log( `Rating is: ${rating}` );
   }
 
