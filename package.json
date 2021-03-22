@@ -32,7 +32,6 @@
   },
   "homepage": "https://github.com/Monte9/react-native-ratings#readme",
   "dependencies": {
-    "husky": "^5.2.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2"
   },
@@ -40,6 +39,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^5.6.1",
     "eslint-plugin-react": "^7.11.1",
+    "husky": "^5.2.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-native": "^0.61.4"
