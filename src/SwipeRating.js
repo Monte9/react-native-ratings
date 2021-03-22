@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import {
   View, Text, Animated, PanResponder, Image,
-  StyleSheet, Platform
+  StyleSheet, Platform, Dimensions
 } from 'react-native';
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
@@ -45,27 +45,43 @@ export default class SwipeRating extends Component {
     ratingCount: 5,
     showReadOnlyText: true,
     imageSize: 40,
-    minValue: 0
+    minValue: 0,
+    jumpValue: 0
   };
 
   constructor( props ) {
     super( props );
-    const { onStartRating, onFinishRating, fractions } = this.props;
+    const { onStartRating, onSwipeRating, onFinishRating, fractions } = this.props;
     const position = new Animated.ValueXY();
 
     const panResponder = PanResponder.create( {
       onStartShouldSetPanResponder: () => true,
-      onPanResponderGrant: () => {
-        if ( typeof onStartRating === 'function' ) {
-          onStartRating();
+      onPanResponderGrant: ( event, gesture ) => {
+        const newPosition = new Animated.ValueXY();
+        const tapPositionX = gesture.x0 - this.state.centerX + gesture.dx;
+
+        newPosition.setValue( { x: tapPositionX, y: 0 } );
+        if ( this.state.isComponentMounted ) {
+          this.setState( { position: newPosition, value: tapPositionX } );
+          const rating = this.getCurrentRating( tapPositionX );
+
+          if ( typeof onStartRating === 'function' ) {
+            onStartRating( rating );
+          }
         }
       },
       onPanResponderMove: ( event, gesture ) => {
         const newPosition = new Animated.ValueXY();
+        const tapPositionX = gesture.x0 - this.state.centerX + gesture.dx;
 
-        newPosition.setValue( { x: gesture.dx, y: 0 } );
+        newPosition.setValue( { x: tapPositionX, y: 0 } );
         if ( this.state.isComponentMounted ) {
-          this.setState( {position: newPosition, value: gesture.dx} );
+          this.setState( { position: newPosition, value: tapPositionX } );
+          const rating = this.getCurrentRating( tapPositionX );
+
+          if ( typeof onSwipeRating === "function" ) {
+            onSwipeRating( rating );
+          }
         }
       },
       onPanResponderRelease: () => {
@@ -101,6 +117,16 @@ export default class SwipeRating extends Component {
     if ( this.props.startingValue !== prevProps.startingValue ) {
       this.setCurrentRating( this.props.startingValue );
     }
+  }
+
+  handleLayoutChange() {
+    // eslint-disable-next-line max-params
+    this.ratingRef.measure( ( fx, fy, width, height, px ) => {
+      this.setState( {
+        // eslint-disable-next-line no-mixed-operators
+        centerX: px % Dimensions.get( "window" ).width + width / 2
+      } );
+    } );
   }
 
   getPrimaryViewStyle() {
@@ -162,6 +188,7 @@ export default class SwipeRating extends Component {
     );
   }
 
+  // eslint-disable-next-line max-statements
   getCurrentRating( value ) {
     const { fractions, imageSize, ratingCount } = this.props;
 
@@ -179,8 +206,17 @@ export default class SwipeRating extends Component {
     } else {
       currentRating = fractions ? Number( startingValue.toFixed( fractions ) ) : Math.ceil( startingValue );
     }
-
-    return currentRating;
+    if (
+      this.props.jumpValue > 0 &&
+      this.props.jumpValue < this.props.ratingCount
+    ) {
+      return (
+        Math.ceil( currentRating * ( 1 / this.props.jumpValue ) ) /
+        ( 1 / this.props.jumpValue )
+      );
+    } else {
+      return currentRating;
+    }
   }
 
   // eslint-disable-next-line max-statements
@@ -245,7 +281,11 @@ export default class SwipeRating extends Component {
       <View pointerEvents={readonly ? 'none' : 'auto'} style={style}>
         {showRating && this.displayCurrentRating()}
         <View style={styles.starsWrapper} {...this.state.panResponder.panHandlers}>
-          <View style={styles.starsInsideWrapper}>
+            <View style={styles.starsInsideWrapper} onLayout={e => {
+              this.handleLayoutChange( e )
+            }} ref={view => {
+              this.ratingRef = view;
+            }}>
             <Animated.View style={this.getPrimaryViewStyle()} />
             <Animated.View style={this.getSecondaryViewStyle()} />
           </View>
