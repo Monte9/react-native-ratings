@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/Monte9/react-native-ratings#readme",
   "dependencies": {
+    "husky": "^5.2.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2"
   },
