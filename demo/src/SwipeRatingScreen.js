@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {
   Text, View, ScrollView, SafeAreaView, Platform, StyleSheet
 } from 'react-native';
@@ -10,6 +10,7 @@ const WATER_IMAGE = require( '../assets/water.png' );
 
 class SwipeRatingScreen extends Component {
   ratingCompleted( rating ) {
+    // eslint-disable-next-line no-console
     console.log( `Rating is: ${rating}` );
   }
 
@@ -30,6 +31,7 @@ class SwipeRatingScreen extends Component {
           <Card title="WITH FRACTIONS" containerStyle={styles.card}>
             <Rating
               showRating={true} fractions={2} ratingTextColor="teal"
+              // eslint-disable-next-line no-console
               onStartRating={() => console.log( "started rating" )}
             />
           </Card>
