@@ -9,7 +9,7 @@ export default class Star extends PureComponent {
   static defaultProps = {
     starImage: STAR_IMAGE,
     selectedColor: '#f1c40f',
-    unSelectedColor: "#BDC3C7",
+    unSelectedColor: "#BDC3C7"
   };
 
   constructor() {
@@ -32,7 +32,7 @@ export default class Star extends PureComponent {
         toValue: 1,
         friction: 2,
         tension: 1,
-        useNativeDriver: true,
+        useNativeDriver: true
       }
     ).start();
 
