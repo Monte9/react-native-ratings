@@ -126,7 +126,9 @@ Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tre
 | fractions | 2 | number | The number of decimal places for the rating value; must be between 0 and 20 |
 | minValue | 0 | number | The minimum value the user can select |
 | style | none | style | Exposes style prop to add additonal styling to the container view (optional) |
-| onStartRating | none | function | Callback method when the user starts rating |
+| jumpValue | 0 | number | The value to jump when rating value changes (if `jumpValue` === 0.5, rating value increases/decreases like 0, 0.5, 1.0, 1.5 ...). Default is 0 (not to jump)|
+| onStartRating | none | function(rating: number) | Callback method when the user starts rating. Gives you the start rating value as a whole number |
+| onSwipeRating | none | function(rating: number) | Callback method when the user is swiping. Gives you the current rating value as a whole number|
 | onFinishRating | none | function(rating: number) | Callback method when the user finishes rating. Gives you the final rating value as a whole number (required) |
 
 ## Try it out
