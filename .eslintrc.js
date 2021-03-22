@@ -201,6 +201,8 @@ module.exports = {
         "prefer-template": "error",
         "radix": "error",
         "react/jsx-uses-vars": "error",
+        "react/jsx-uses-react": "error",   
+        "react/jsx-uses-vars": "error",
         "require-await": "error",
         "rest-spread-spacing": "error",
         "semi-spacing": "error",
