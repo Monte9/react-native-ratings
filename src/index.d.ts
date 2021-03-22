@@ -92,9 +92,20 @@ export interface RatingProps {
   minValue?: number;
 
   /**
+   * The number to jump per swipe
+   * Default is 0 (not to jump)
+   */
+  jumpValue?: number;
+  
+  /**
    * Callback method when the user starts rating.
    */
-  onStartRating?(): void;
+  onStartRating?( rating: number): void;
+
+  /**
+   * Callback method when the user is swiping.
+   */
+  onSwipeRating?( rating: number): void;
 
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
