@@ -1,4 +1,4 @@
-import {PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import {StyleSheet, Animated, TouchableOpacity} from 'react-native';
 
 const STAR_IMAGE = require( '../images/airbnb-star.png' );
