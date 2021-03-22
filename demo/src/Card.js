@@ -6,19 +6,10 @@ const Card = props => {
     children,
     containerStyle,
     wrapperStyle,
-    imageWrapperStyle,
     title,
     titleStyle,
     titleNumberOfLines,
-    featuredTitle,
-    featuredTitleStyle,
-    featuredSubtitle,
-    featuredSubtitleStyle,
-    dividerStyle,
     image,
-    imageStyle,
-    imageProps,
-    theme,
     ...attributes
   } = props;
 
