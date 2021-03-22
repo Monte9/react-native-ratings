@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { 
+import {
   Text, View, ScrollView, SafeAreaView, Platform, StyleSheet
 } from 'react-native';
 import { Rating } from 'react-native-ratings';
@@ -28,9 +28,9 @@ class SwipeRatingScreen extends Component {
             <Rating showRating={true} fractions={false} />
           </Card>
           <Card title="WITH FRACTIONS" containerStyle={styles.card}>
-            <Rating 
-              showRating={true} fractions={2} ratingTextColor="teal" 
-              onStartRating={() => console.log("started rating")}
+            <Rating
+              showRating={true} fractions={2} ratingTextColor="teal"
+              onStartRating={() => console.log( "started rating" )}
             />
           </Card>
           <Card title="CUSTOM RATING" containerStyle={styles.card}>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create( {
   flex: {
     flex: 1
   },
-  center:  {
+  center: {
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -107,9 +107,9 @@ const styles = StyleSheet.create( {
     color: '#34495e'
   },
   card: {
-    width: '85%', 
+    width: '85%',
     marginBottom: 20
   }
-});
+} );
 
 export default SwipeRatingScreen;
