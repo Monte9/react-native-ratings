@@ -122,9 +122,11 @@ export default class SwipeRating extends Component {
   handleLayoutChange() {
     // eslint-disable-next-line max-params
     this.ratingRef.measure( ( fx, fy, width, height, px ) => {
+      const halfWidth = width / 2
+      const pageXWithinWindow = px % Dimensions.get( "window" ).width
+
       this.setState( {
-        // eslint-disable-next-line no-mixed-operators
-        centerX: px % Dimensions.get( "window" ).width + width / 2
+        centerX: pageXWithinWindow + halfWidth
       } );
     } );
   }
