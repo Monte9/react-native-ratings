@@ -6,54 +6,45 @@ const Card = props => {
     children,
     containerStyle,
     wrapperStyle,
-    imageWrapperStyle,
     title,
     titleStyle,
     titleNumberOfLines,
-    featuredTitle,
-    featuredTitleStyle,
-    featuredSubtitle,
-    featuredSubtitleStyle,
-    dividerStyle,
     image,
-    imageStyle,
-    imageProps,
-    theme,
     ...attributes
   } = props;
 
   return (
     <View
       {...attributes}
-      style={StyleSheet.flatten([
+      style={StyleSheet.flatten( [
         styles.container,
-        containerStyle && containerStyle,
-      ])}
+        containerStyle && containerStyle
+      ] )}
     >
       <View
-        style={StyleSheet.flatten([
+        style={StyleSheet.flatten( [
           styles.wrapper,
-          wrapperStyle && wrapperStyle,
-        ])}
+          wrapperStyle && wrapperStyle
+        ] )}
       >
-        {title === '' || React.isValidElement(title)
-          ? title
-          : title &&
-            title.length && (
+        {title === '' || React.isValidElement( title ) ?
+          title :
+          title &&
+            title.length &&
               <View>
                 <Text
                   testID="cardTitle"
-                  style={StyleSheet.flatten([
+                  style={StyleSheet.flatten( [
                     styles.cardTitle,
                     image && styles.imageCardTitle,
-                    titleStyle && titleStyle,
-                  ])}
+                    titleStyle && titleStyle
+                  ] )}
                   numberOfLines={titleNumberOfLines}
                 >
                   {title}
                 </Text>
               </View>
-            )}
+            }
         {children}
       </View>
     </View>
@@ -68,57 +59,57 @@ const styles = {
     margin: 15,
     marginBottom: 0,
     borderColor: 'gray',
-    ...Platform.select({
+    ...Platform.select( {
       android: {
-        elevation: 1,
+        elevation: 1
       },
       default: {
         shadowColor: 'rgba(0,0,0, .2)',
         shadowOffset: { height: 0, width: 0 },
         shadowOpacity: 1,
-        shadowRadius: 1,
-      },
-    }),
+        shadowRadius: 1
+      }
+    } )
   },
   featuredTitle: {
     fontSize: 18,
     marginBottom: 8,
     color: 'white',
-    ...Platform.select({
+    ...Platform.select( {
       default: {
-        fontWeight: '800',
-      },
-    }),
+        fontWeight: '800'
+      }
+    } )
   },
   featuredSubtitle: {
     fontSize: 13,
     marginBottom: 8,
     color: 'white',
-    ...Platform.select({
+    ...Platform.select( {
       default: {
-        fontWeight: '400',
-      },
-    }),
+        fontWeight: '400'
+      }
+    } )
   },
   wrapper: {
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
   },
   divider: {
-    marginBottom: 15,
+    marginBottom: 15
   },
   cardTitle: {
     fontSize: 14,
     color: 'gray',
-    ...Platform.select({
+    ...Platform.select( {
       default: {
-        fontWeight: 'bold',
-      },
-    }),
+        fontWeight: 'bold'
+      }
+    } ),
     textAlign: 'center',
-    marginBottom: 15,
+    marginBottom: 15
   },
   imageCardTitle: {
-    marginTop: 15,
+    marginTop: 15
   },
   overlayContainer: {
     flex: 1,
@@ -130,8 +121,8 @@ const styles = {
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
-  },
+    bottom: 0
+  }
 };
 
 export default Card;

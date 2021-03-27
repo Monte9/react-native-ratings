@@ -8,10 +8,10 @@ import {
 } from 'react-native';
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
-const STAR_IMAGE = require('./images/star.png');
-const HEART_IMAGE = require('./images/heart.png');
-const ROCKET_IMAGE = require('./images/rocket.png');
-const BELL_IMAGE = require('./images/bell.png');
+const STAR_IMAGE = require( './images/star.png' );
+const HEART_IMAGE = require( './images/heart.png' );
+const ROCKET_IMAGE = require( './images/rocket.png' );
+const BELL_IMAGE = require( './images/bell.png' );
 
 const TYPES = {
   star: {
@@ -39,97 +39,108 @@ const TYPES = {
 export default class SwipeRating extends Component {
   static defaultProps = {
     type: 'star',
-    ratingImage: require('./images/star.png'),
+    ratingImage: STAR_IMAGE,
     ratingColor: '#f1c40f',
     ratingBackgroundColor: 'white',
     ratingCount: 5,
     showReadOnlyText: true,
     imageSize: 40,
     minValue: 0,
-    jumpValue: 0,
+    jumpValue: 0
   };
 
-  constructor(props) {
-    super(props);
+  constructor( props ) {
+    super( props );
     const { onStartRating, onSwipeRating, onFinishRating, fractions } = this.props;
     const position = new Animated.ValueXY();
 
-    const panResponder = PanResponder.create({
+    const panResponder = PanResponder.create( {
       onStartShouldSetPanResponder: () => true,
-      onPanResponderGrant: (event, gesture) => {
+      onPanResponderGrant: ( event, gesture ) => {
         const newPosition = new Animated.ValueXY();
         const tapPositionX = gesture.x0 - this.state.centerX + gesture.dx;
-        newPosition.setValue({ x: tapPositionX, y: 0 });
-        if (this.state.isComponentMounted) {
-          this.setState({ position: newPosition, value: tapPositionX });
-          const rating = this.getCurrentRating(tapPositionX);
-          if (typeof onStartRating === 'function') onStartRating(rating);
-        }
-      },
-      onPanResponderMove: (event, gesture) => {
-        const newPosition = new Animated.ValueXY();
-        const tapPositionX = gesture.x0 - this.state.centerX + gesture.dx;
-        newPosition.setValue({ x: tapPositionX, y: 0 });
-        if (this.state.isComponentMounted) {
-          this.setState({ position: newPosition, value: tapPositionX });
-          const rating = this.getCurrentRating(tapPositionX);
-          if (typeof onSwipeRating === "function") onSwipeRating(rating);
-        }
-      },
-      onPanResponderRelease: event => {
-        const rating = this.getCurrentRating(this.state.value);
-        if (rating >= this.props.minValue) {
-          if (!fractions) {
-            // 'round up' to the nearest rating image
-            this.setCurrentRating(rating);
+
+        newPosition.setValue( { x: tapPositionX, y: 0 } );
+        if ( this.state.isComponentMounted ) {
+          this.setState( { position: newPosition, value: tapPositionX } );
+          const rating = this.getCurrentRating( tapPositionX );
+
+          if ( typeof onStartRating === 'function' ) {
+            onStartRating( rating );
           }
-          if (typeof onFinishRating === 'function') onFinishRating(rating);
+        }
+      },
+      onPanResponderMove: ( event, gesture ) => {
+        const newPosition = new Animated.ValueXY();
+        const tapPositionX = gesture.x0 - this.state.centerX + gesture.dx;
+
+        newPosition.setValue( { x: tapPositionX, y: 0 } );
+        if ( this.state.isComponentMounted ) {
+          this.setState( { position: newPosition, value: tapPositionX } );
+          const rating = this.getCurrentRating( tapPositionX );
+
+          if ( typeof onSwipeRating === "function" ) {
+            onSwipeRating( rating );
+          }
+        }
+      },
+      onPanResponderRelease: () => {
+        const rating = this.getCurrentRating( this.state.value );
+
+        if ( rating >= this.props.minValue ) {
+          if ( !fractions ) {
+            // 'round up' to the nearest rating image
+            this.setCurrentRating( rating );
+          }
+          if ( typeof onFinishRating === 'function' ) {
+            onFinishRating( rating );
+          }
         }
       }
-    });
+    } );
 
     this.state = { panResponder, position, display: false, isComponentMounted: false };
   }
 
-  async componentDidMount() {
+ componentDidMount() {
     try {
-      const STAR_IMAGE = await require('./images/star.png');
-      const HEART_IMAGE = await require('./images/heart.png');
-      const ROCKET_IMAGE = await require('./images/rocket.png');
-      const BELL_IMAGE = await require('./images/bell.png');
-
-      this.setState({ display: true, isComponentMounted: true });
-    } catch(err) {
-      console.log(err)
+      this.setState( { display: true, isComponentMounted: true } );
+    } catch ( err ) {
+      // eslint-disable-next-line no-console
+      console.log( err )
     }
 
-    this.setCurrentRating(this.props.startingValue);
+    this.setCurrentRating( this.props.startingValue );
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.startingValue !== prevProps.startingValue) {
-      this.setCurrentRating(this.props.startingValue);
+  componentDidUpdate( prevProps ) {
+    if ( this.props.startingValue !== prevProps.startingValue ) {
+      this.setCurrentRating( this.props.startingValue );
     }
   }
 
   handleLayoutChange() {
-    this.ratingRef.measure((fx, fy, width, height, px, py) => {
-      this.setState({
-        centerX: (px % Dimensions.get("window").width) + width / 2,
-      });
-    });
+    // eslint-disable-next-line max-params
+    this.ratingRef.measure( ( fx, fy, width, height, px ) => {
+      const halfWidth = width / 2
+      const pageXWithinWindow = px % Dimensions.get( "window" ).width
+
+      this.setState( {
+        centerX: pageXWithinWindow + halfWidth
+      } );
+    } );
   }
 
   getPrimaryViewStyle() {
     const { position } = this.state;
     const { imageSize, ratingCount, type } = this.props;
 
-    const color = TYPES[type].color;
+    const {color} = TYPES[type];
 
     const width = position.x.interpolate(
       {
-        inputRange: [-ratingCount * (imageSize / 2), 0, ratingCount * (imageSize / 2)],
-        outputRange: [0, (ratingCount * imageSize) / 2, ratingCount * imageSize],
+        inputRange: [-ratingCount * ( imageSize / 2 ), 0, ratingCount * ( imageSize / 2 )],
+        outputRange: [0, ratingCount * imageSize / 2, ratingCount * imageSize],
         extrapolate: 'clamp'
       },
       {
@@ -148,12 +159,12 @@ export default class SwipeRating extends Component {
     const { position } = this.state;
     const { imageSize, ratingCount, type } = this.props;
 
-    const backgroundColor = TYPES[type].backgroundColor;
+    const {backgroundColor} = TYPES[type];
 
     const width = position.x.interpolate(
       {
-        inputRange: [-ratingCount * (imageSize / 2), 0, ratingCount * (imageSize / 2)],
-        outputRange: [ratingCount * imageSize, (ratingCount * imageSize) / 2, 0],
+        inputRange: [-ratingCount * ( imageSize / 2 ), 0, ratingCount * ( imageSize / 2 )],
+        outputRange: [ratingCount * imageSize, ratingCount * imageSize / 2, 0],
         extrapolate: 'clamp'
       },
       {
@@ -170,67 +181,71 @@ export default class SwipeRating extends Component {
 
   renderRatings() {
     const { imageSize, ratingCount, type, tintColor } = this.props;
-    const source = TYPES[type].source;
+    const {source} = TYPES[type];
 
-    return times(ratingCount, index => (
+    return times( ratingCount, index =>
       <View key={index} style={styles.starContainer}>
         <Image source={source} style={{ width: imageSize, height: imageSize, tintColor }} />
       </View>
-    ));
+    );
   }
 
-  getCurrentRating(value) {
-    // const { value } = this.state;
+  // eslint-disable-next-line max-statements
+  getCurrentRating( value ) {
     const { fractions, imageSize, ratingCount } = this.props;
 
     const startingValue = ratingCount / 2;
-    let currentRating = (this.props.minValue) ? this.props.minValue : 0;
 
-    if (value > (ratingCount * imageSize) / 2) {
+    let currentRating = this.props.minValue ? this.props.minValue : 0;
+
+    if ( value > ratingCount * imageSize / 2 ) {
       currentRating = ratingCount;
-    } else if (value < (-ratingCount * imageSize) / 2) {
-      currentRating = (this.props.minValue) ? this.props.minValue : 0;
-    } else if (value <= imageSize || value > imageSize) {
-      currentRating = startingValue + value / imageSize;
-      currentRating = !fractions ? Math.ceil(currentRating) : +currentRating.toFixed(fractions);
+    } else if ( value < -ratingCount * imageSize / 2 ) {
+      currentRating = this.props.minValue ? this.props.minValue : 0;
+    } else if ( value <= imageSize || value > imageSize ) {
+      currentRating = ( startingValue + value ) / imageSize;
+      currentRating = fractions ? Number( currentRating.toFixed( fractions ) ) : Math.ceil( currentRating );
     } else {
-      currentRating = !fractions ? Math.ceil(startingValue) : +startingValue.toFixed(fractions);
+      currentRating = fractions ? Number( startingValue.toFixed( fractions ) ) : Math.ceil( startingValue );
     }
     if (
       this.props.jumpValue > 0 &&
       this.props.jumpValue < this.props.ratingCount
     ) {
       return (
-        Math.ceil(currentRating * (1 / this.props.jumpValue)) /
-        (1 / this.props.jumpValue)
+        Math.ceil( currentRating * ( 1 / this.props.jumpValue ) ) /
+        ( 1 / this.props.jumpValue )
       );
     } else {
       return currentRating;
     }
   }
 
-  setCurrentRating(rating) {
+  // eslint-disable-next-line max-statements
+  setCurrentRating( rating ) {
     const { imageSize, ratingCount } = this.props;
 
     // `initialRating` corresponds to `startingValue` in the getter. Naming it
-    // differently here avoids confusion with `value` below.
+    // Differently here avoids confusion with `value` below.
     const initialRating = ratingCount / 2;
+
     let value = null;
 
-    if (rating > ratingCount) {
-      value = (ratingCount * imageSize) / 2;
-    } else if (rating < 0) {
-      value = (-ratingCount * imageSize) / 2;
-    } else if (rating < ratingCount / 2 || rating > ratingCount / 2) {
-      value = (rating - initialRating) * imageSize;
+    if ( rating > ratingCount ) {
+      value = ratingCount * imageSize / 2;
+    } else if ( rating < 0 ) {
+      value = -ratingCount * imageSize / 2;
+    } else if ( rating < ratingCount / 2 || rating > ratingCount / 2 ) {
+      value = ( rating - initialRating ) * imageSize;
     } else {
       value = 0;
     }
 
     const newPosition = new Animated.ValueXY();
-    newPosition.setValue({ x: value, y: 0 });
-    if (this.state.isComponentMounted) {
-      this.setState({position: newPosition, value});
+
+    newPosition.setValue( { x: value, y: 0 } );
+    if ( this.state.isComponentMounted ) {
+      this.setState( {position: newPosition, value} );
     }
   }
 
@@ -242,7 +257,7 @@ export default class SwipeRating extends Component {
       <View style={styles.showRatingView}>
         <View style={styles.ratingView}>
           <Text style={[styles.ratingText, { color }]}>Rating:{' '}</Text>
-          <Text style={[styles.currentRatingText, { color }]}>{this.getCurrentRating(this.state.value)}</Text>
+          <Text style={[styles.currentRatingText, { color }]}>{this.getCurrentRating( this.state.value )}</Text>
           <Text style={[styles.maxRatingText, { color }]}>/{ratingCount}</Text>
         </View>
         <View>{readonly && showReadOnlyText && <Text style={[styles.readonlyLabel, { color }]}>(readonly)</Text>}</View>
@@ -253,12 +268,13 @@ export default class SwipeRating extends Component {
   render() {
     const { readonly, type, ratingImage, ratingColor, ratingBackgroundColor, style, showRating } = this.props;
 
-    if (type === 'custom') {
-      let custom = {
+    if ( type === 'custom' ) {
+      const custom = {
         source: ratingImage,
         color: ratingColor,
         backgroundColor: ratingBackgroundColor
       };
+
       TYPES.custom = custom;
     }
 
@@ -267,7 +283,11 @@ export default class SwipeRating extends Component {
       <View pointerEvents={readonly ? 'none' : 'auto'} style={style}>
         {showRating && this.displayCurrentRating()}
         <View style={styles.starsWrapper} {...this.state.panResponder.panHandlers}>
-          <View style={styles.starsInsideWrapper} onLayout={(e) => {this.handleLayoutChange(e)}} ref={(view) => {this.ratingRef = view;}}>
+            <View style={styles.starsInsideWrapper} onLayout={e => {
+              this.handleLayoutChange( e )
+            }} ref={view => {
+              this.ratingRef = view;
+            }}>
             <Animated.View style={this.getPrimaryViewStyle()} />
             <Animated.View style={this.getSecondaryViewStyle()} />
           </View>
@@ -279,16 +299,16 @@ export default class SwipeRating extends Component {
   }
 
   componentWillUnmount() {
-    this.setState({ isComponentMounted: false });
+    this.setState( { isComponentMounted: false } );
   }
 
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   starsWrapper: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   starsInsideWrapper: {
     position: 'absolute',
@@ -298,7 +318,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   showRatingView: {
     flexDirection: 'column',
@@ -337,18 +357,19 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
     color: '#34495e'
   }
-});
+} );
 
-const fractionsType = (props, propName, componentName) => {
-  if (props[propName]) {
+const fractionsType = ( props, propName, componentName ) => {
+  if ( props[propName] ) {
     const value = props[propName];
-    if (typeof value === 'number') {
-      return value >= 0 && value <= 20
-        ? null
-        : new Error(`\`${propName}\` in \`${componentName}\` must be between 0 and 20`);
+
+    if ( typeof value === 'number' ) {
+      return value >= 0 && value <= 20 ?
+        null :
+        new Error( `\`${propName}\` in \`${componentName}\` must be between 0 and 20` );
     }
 
-    return new Error(`\`${propName}\` in \`${componentName}\` must be a number`);
+    return new Error( `\`${propName}\` in \`${componentName}\` must be a number` );
   }
 };
 

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -17,16 +16,17 @@ export default class TapRating extends Component {
     reviewSize: 25
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps( nextProps, prevState ) {
     const { defaultRating } = nextProps;
 
-    if (defaultRating !== prevState.defaultRating) {
+    if ( defaultRating !== prevState.defaultRating ) {
       return {
         position: defaultRating,
         defaultRating
       }
     }
-    return null;
+
+return null;
   }
 
   constructor() {
@@ -40,21 +40,23 @@ export default class TapRating extends Component {
   componentDidMount() {
     const { defaultRating } = this.props
 
-    this.setState({ position: defaultRating })
+    this.setState( { position: defaultRating } )
   }
 
-  renderStars(rating_array) {
-    return _.map(rating_array, (star, index) => {
+  renderStars( rating_array ) {
+    return _.map( rating_array, star => {
       return star
-    })
+    } )
   }
 
-  starSelectedInPosition(position) {
+  starSelectedInPosition( position ) {
     const { onFinishRating } = this.props
 
-    if (typeof onFinishRating === 'function') onFinishRating(position);
+    if ( typeof onFinishRating === 'function' ) {
+      onFinishRating( position );
+    }
 
-    this.setState({ position: position })
+    this.setState( { position } )
   }
 
   render() {
@@ -63,21 +65,21 @@ export default class TapRating extends Component {
     const rating_array = []
     const starContainerStyle = [styles.starContainer]
 
-    if (this.props.starContainerStyle) {
-        starContainerStyle.push(this.props.starContainerStyle);
+    if ( this.props.starContainerStyle ) {
+        starContainerStyle.push( this.props.starContainerStyle );
     }
 
-    _.times(count, index => {
+    _.times( count, index => {
       rating_array.push(
         <Star
           key={index}
           position={index + 1}
-          starSelectedInPosition={this.starSelectedInPosition.bind(this)}
+          starSelectedInPosition={this.starSelectedInPosition.bind( this )}
           fill={position >= index + 1}
           {...this.props}
         />
       )
-    })
+    } )
 
     return (
       <View style={styles.ratingContainer}>
@@ -87,27 +89,27 @@ export default class TapRating extends Component {
           </Text>
         }
         <View style={starContainerStyle}>
-          {this.renderStars(rating_array)}
+          {this.renderStars( rating_array )}
         </View>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   ratingContainer: {
     backgroundColor: 'transparent',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   reviewText: {
     fontWeight: 'bold',
-    margin: 10,
+    margin: 10
   },
   starContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   }
-});
+} );

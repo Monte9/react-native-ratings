@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { 
+import {
   Text, View, ScrollView, SafeAreaView, Platform, StyleSheet
 } from 'react-native';
 import { AirbnbRating } from 'react-native-ratings';
 
 import Card from './Card';
+const WATER_IMAGE = require( '../assets/water.png' );
 
 class TapRatingScreen extends Component {
   ratingCompleted( rating ) {
+    // eslint-disable-next-line no-console
     console.log( `Rating is: ${rating}` );
   }
 
@@ -34,6 +36,12 @@ class TapRatingScreen extends Component {
               onFinishRating={this.ratingCompleted}
             />
           </Card>
+          <Card title="CUSTOM IMAGE" containerStyle={styles.card}>
+            <AirbnbRating
+              onFinishRating={this.ratingCompleted}
+              starImage={WATER_IMAGE}
+            />
+          </Card>
           <Card title="CUSTOM COLOR" containerStyle={styles.card}>
             <AirbnbRating showRating={false} selectedColor="green" />
           </Card>
@@ -41,11 +49,11 @@ class TapRatingScreen extends Component {
             <AirbnbRating isDisabled={true} showRating={false} defaultRating={4} />
           </Card>
           <Card title="CUSTOM CONTAINER STYLE" containerStyle={styles.card}>
-            <AirbnbRating 
+            <AirbnbRating
               starContainerStyle={{
                   alignSelf: "center",
                   backgroundColor: "green"
-              }} 
+              }}
               isDisabled={true}
               showRating={false}
               defaultRating={4}
@@ -61,7 +69,7 @@ const styles = StyleSheet.create( {
   flex: {
     flex: 1
   },
-  center:  {
+  center: {
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -84,9 +92,9 @@ const styles = StyleSheet.create( {
     color: '#34495e'
   },
   card: {
-    width: '85%', 
+    width: '85%',
     marginBottom: 20
-  },
-});
+  }
+} );
 
 export default TapRatingScreen;

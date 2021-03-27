@@ -1,7 +1,8 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "node": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -11,6 +12,7 @@ module.exports = {
         },
         "sourceType": "module"
     },
+    "parser": "babel-eslint",
     "plugins": [
         "react"
     ],
@@ -78,7 +80,7 @@ module.exports = {
         "lines-around-comment": "error",
         "lines-around-directive": "error",
         "max-depth": "error",
-        "max-lines": "error",
+        "max-lines": "off",
         "max-nested-callbacks": "error",
         "max-params": "error",
         "max-statements": "error",
@@ -198,6 +200,8 @@ module.exports = {
         "prefer-spread": "error",
         "prefer-template": "error",
         "radix": "error",
+        "react/jsx-uses-vars": "error",
+        "react/jsx-uses-react": "error",   
         "react/jsx-uses-vars": "error",
         "require-await": "error",
         "rest-spread-spacing": "error",
