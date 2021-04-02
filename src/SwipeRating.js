@@ -203,7 +203,9 @@ export default class SwipeRating extends Component {
     } else if ( value < -ratingCount * imageSize / 2 ) {
       currentRating = this.props.minValue ? this.props.minValue : 0;
     } else if ( value <= imageSize || value > imageSize ) {
-      currentRating = ( startingValue + value ) / imageSize;
+      const diff = value / imageSize
+
+      currentRating = startingValue + diff;
       currentRating = fractions ? Number( currentRating.toFixed( fractions ) ) : Math.ceil( currentRating );
     } else {
       currentRating = fractions ? Number( startingValue.toFixed( fractions ) ) : Math.ceil( startingValue );
