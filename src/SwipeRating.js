@@ -104,13 +104,15 @@ export default class SwipeRating extends Component {
 
  componentDidMount() {
     try {
-      this.setState( { display: true, isComponentMounted: true } );
+      this.setState(
+        { display: true, isComponentMounted: true },
+        () => this.setCurrentRating( this.props.startingValue )
+      );
     } catch ( err ) {
       // eslint-disable-next-line no-console
       console.log( err )
     }
 
-    this.setCurrentRating( this.props.startingValue );
   }
 
   componentDidUpdate( prevProps ) {
@@ -203,7 +205,9 @@ export default class SwipeRating extends Component {
     } else if ( value < -ratingCount * imageSize / 2 ) {
       currentRating = this.props.minValue ? this.props.minValue : 0;
     } else if ( value <= imageSize || value > imageSize ) {
-      currentRating = ( startingValue + value ) / imageSize;
+      const diff = value / imageSize
+
+      currentRating = startingValue + diff;
       currentRating = fractions ? Number( currentRating.toFixed( fractions ) ) : Math.ceil( currentRating );
     } else {
       currentRating = fractions ? Number( startingValue.toFixed( fractions ) ) : Math.ceil( startingValue );
