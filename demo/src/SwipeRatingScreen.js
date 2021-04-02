@@ -23,10 +23,10 @@ class SwipeRatingScreen extends Component {
         </View>
         <ScrollView style={styles.flex} contentContainerStyle={styles.center}>
           <Card title="DEFAULT" containerStyle={styles.card}>
-            <Rating showRating={false} fractions={false} />
+            <Rating showRating={false} fractions={false}/>
           </Card>
-          <Card title="WITH RATING" containerStyle={styles.card}>
-            <Rating showRating={true} fractions={false} />
+          <Card title="WITH RATING(custom start value)" containerStyle={styles.card}>
+            <Rating showRating={true} fractions={false} startingValue={ 4 }/>
           </Card>
           <Card title="WITH FRACTIONS" containerStyle={styles.card}>
             <Rating
