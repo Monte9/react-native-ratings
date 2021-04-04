@@ -159,7 +159,7 @@ export default class SwipeRating extends Component {
 
   getSecondaryViewStyle() {
     const { position } = this.state;
-    const { imageSize, ratingCount, type } = this.props;
+    const { imageSize, ratingCount, type, emptyBackgroundColor } = this.props;
 
     const {backgroundColor} = TYPES[type];
 
@@ -175,7 +175,7 @@ export default class SwipeRating extends Component {
     );
 
     return {
-      backgroundColor,
+      backgroundColor: emptyBackgroundColor || backgroundColor,
       width,
       height: width ? imageSize : 0
     };
