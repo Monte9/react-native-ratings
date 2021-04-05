@@ -1,8 +1,8 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import { ImageStyle, ImageURISource } from "react-native";
 
 export interface RatingProps {
+
   /**
    * Graphic used for represent a rating
    *
@@ -63,7 +63,7 @@ export interface RatingProps {
   /**
    * Exposes style prop to add additonal styling to the container view
    */
-  style?: PropTypes.object;
+  style?: Object;
 
   /**
    * Whether the rating can be modiefied by the user
@@ -96,26 +96,27 @@ export interface RatingProps {
    * Default is 0 (not to jump)
    */
   jumpValue?: number;
-  
+
   /**
    * Callback method when the user starts rating.
    */
-  onStartRating?( rating: number): void;
+  onStartRating?: ( rating: number ) => void;
 
   /**
    * Callback method when the user is swiping.
    */
-  onSwipeRating?( rating: number): void;
+  onSwipeRating?: ( rating: number ) => void;
 
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
-  onFinishRating?(rating: number): void;
+  onFinishRating?: ( rating: number ) => void;
 }
 
 export class Rating extends React.Component<RatingProps> {}
 
 export interface AirbnbRatingProps {
+
   /**
    * Initial value for the rating
    *
@@ -175,7 +176,7 @@ export interface AirbnbRatingProps {
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
-  onFinishRating?(value: number): void;
+  onFinishRating?: ( value: number ) => void;
 
   /**
    * Color value for filled stars.

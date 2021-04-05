@@ -1,57 +1,121 @@
-import React, { Component } from 'react';
-import times from 'lodash/times';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import times from "lodash/times";
 
 import {
-  View, Text, Animated, PanResponder, Image,
-  StyleSheet, Platform, Dimensions
-} from 'react-native';
+  View,
+  Text,
+  Animated,
+  PanResponder,
+  Image,
+  StyleSheet,
+  Platform,
+  Dimensions
+} from "react-native";
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
-const STAR_IMAGE = require( './images/star.png' );
-const HEART_IMAGE = require( './images/heart.png' );
-const ROCKET_IMAGE = require( './images/rocket.png' );
-const BELL_IMAGE = require( './images/bell.png' );
+const STAR_IMAGE = require( "./images/star.png" );
+const HEART_IMAGE = require( "./images/heart.png" );
+const ROCKET_IMAGE = require( "./images/rocket.png" );
+const BELL_IMAGE = require( "./images/bell.png" );
 
 const TYPES = {
   star: {
     source: STAR_IMAGE,
-    color: '#f1c40f',
-    backgroundColor: 'white'
+    color: "#f1c40f",
+    backgroundColor: "white"
   },
   heart: {
     source: HEART_IMAGE,
-    color: '#e74c3c',
-    backgroundColor: 'white'
+    color: "#e74c3c",
+    backgroundColor: "white"
   },
   rocket: {
     source: ROCKET_IMAGE,
-    color: '#2ecc71',
-    backgroundColor: 'white'
+    color: "#2ecc71",
+    backgroundColor: "white"
   },
   bell: {
     source: BELL_IMAGE,
-    color: '#f39c12',
-    backgroundColor: 'white'
+    color: "#f39c12",
+    backgroundColor: "white"
+  },
+  custom: {}
+};
+
+const fractionsType: any = ( props, propName, componentName ) => {
+  if ( props[propName] ) {
+    const value = props[propName];
+
+    if ( typeof value === "number" ) {
+      return value >= 0 && value <= 20 ?
+        null :
+        new Error(
+            `\`${propName}\` in \`${componentName}\` must be between 0 and 20`
+          );
+    }
+
+    return new Error(
+      `\`${propName}\` in \`${componentName}\` must be a number`
+    );
   }
 };
 
-export default class SwipeRating extends Component {
+type SwipeRatingProps = {
+  type: string;
+  ratingImage: React.ReactNode;
+  ratingColor: string;
+  ratingBackgroundColor: string;
+  ratingCount: number;
+  ratingTextColor: string;
+  imageSize: number;
+  onStartRating: Function;
+  onFinishRating: Function;
+  showRating: boolean;
+  style: Object;
+  readonly: boolean;
+  showReadOnlyText: boolean;
+  startingValue: number;
+  fractions: typeof fractionsType;
+  minValue: number;
+  onSwipeRating: ( number ) => void;
+  tintColor: number;
+  jumpValue: number;
+};
+
+type SwipeRatingState = {
+  isComponentMounted: boolean;
+  position: any;
+  value?: number;
+  centerX?: number;
+  display: boolean;
+  panResponder: any;
+};
+
+export default class SwipeRating extends Component<
+  SwipeRatingProps,
+  SwipeRatingState
+> {
   static defaultProps = {
-    type: 'star',
+    type: "star",
     ratingImage: STAR_IMAGE,
-    ratingColor: '#f1c40f',
-    ratingBackgroundColor: 'white',
+    ratingColor: "#f1c40f",
+    ratingBackgroundColor: "white",
     ratingCount: 5,
     showReadOnlyText: true,
     imageSize: 40,
     minValue: 0,
     jumpValue: 0
   };
+  ratingRef: any;
 
   constructor( props ) {
     super( props );
-    const { onStartRating, onSwipeRating, onFinishRating, fractions } = this.props;
+    const {
+      onStartRating,
+      onSwipeRating,
+      onFinishRating,
+      fractions
+    } = this.props;
     const position = new Animated.ValueXY();
 
     const panResponder = PanResponder.create( {
@@ -65,7 +129,7 @@ export default class SwipeRating extends Component {
           this.setState( { position: newPosition, value: tapPositionX } );
           const rating = this.getCurrentRating( tapPositionX );
 
-          if ( typeof onStartRating === 'function' ) {
+          if ( typeof onStartRating === "function" ) {
             onStartRating( rating );
           }
         }
@@ -92,27 +156,30 @@ export default class SwipeRating extends Component {
             // 'round up' to the nearest rating image
             this.setCurrentRating( rating );
           }
-          if ( typeof onFinishRating === 'function' ) {
+          if ( typeof onFinishRating === "function" ) {
             onFinishRating( rating );
           }
         }
       }
     } );
 
-    this.state = { panResponder, position, display: false, isComponentMounted: false };
+    this.state = {
+      panResponder,
+      position,
+      display: false,
+      isComponentMounted: false
+    };
   }
 
- componentDidMount() {
+  componentDidMount() {
     try {
-      this.setState(
-        { display: true, isComponentMounted: true },
-        () => this.setCurrentRating( this.props.startingValue )
+      this.setState( { display: true, isComponentMounted: true }, () =>
+        this.setCurrentRating( this.props.startingValue )
       );
     } catch ( err ) {
       // eslint-disable-next-line no-console
-      console.log( err )
+      console.log( err );
     }
-
   }
 
   componentDidUpdate( prevProps ) {
@@ -124,8 +191,8 @@ export default class SwipeRating extends Component {
   handleLayoutChange() {
     // eslint-disable-next-line max-params
     this.ratingRef.measure( ( fx, fy, width, height, px ) => {
-      const halfWidth = width / 2
-      const pageXWithinWindow = px % Dimensions.get( "window" ).width
+      const halfWidth = width / 2;
+      const pageXWithinWindow = px % Dimensions.get( "window" ).width;
 
       this.setState( {
         centerX: pageXWithinWindow + halfWidth
@@ -137,13 +204,21 @@ export default class SwipeRating extends Component {
     const { position } = this.state;
     const { imageSize, ratingCount, type } = this.props;
 
-    const {color} = TYPES[type];
+    const { color } = TYPES[type];
 
     const width = position.x.interpolate(
       {
-        inputRange: [-ratingCount * ( imageSize / 2 ), 0, ratingCount * ( imageSize / 2 )],
-        outputRange: [0, ratingCount * imageSize / 2, ratingCount * imageSize],
-        extrapolate: 'clamp'
+        inputRange: [
+          -ratingCount * ( imageSize / 2 ),
+          0,
+          ratingCount * ( imageSize / 2 )
+        ],
+        outputRange: [
+          0,
+          ratingCount * imageSize / 2,
+          ratingCount * imageSize
+        ],
+        extrapolate: "clamp"
       },
       {
         useNativeDriver: true
@@ -161,13 +236,21 @@ export default class SwipeRating extends Component {
     const { position } = this.state;
     const { imageSize, ratingCount, type } = this.props;
 
-    const {backgroundColor} = TYPES[type];
+    const { backgroundColor } = TYPES[type];
 
     const width = position.x.interpolate(
       {
-        inputRange: [-ratingCount * ( imageSize / 2 ), 0, ratingCount * ( imageSize / 2 )],
-        outputRange: [ratingCount * imageSize, ratingCount * imageSize / 2, 0],
-        extrapolate: 'clamp'
+        inputRange: [
+          -ratingCount * ( imageSize / 2 ),
+          0,
+          ratingCount * ( imageSize / 2 )
+        ],
+        outputRange: [
+          ratingCount * imageSize,
+          ratingCount * imageSize / 2,
+          0
+        ],
+        extrapolate: "clamp"
       },
       {
         useNativeDriver: true
@@ -183,11 +266,14 @@ export default class SwipeRating extends Component {
 
   renderRatings() {
     const { imageSize, ratingCount, type, tintColor } = this.props;
-    const {source} = TYPES[type];
+    const { source } = TYPES[type];
 
     return times( ratingCount, index =>
       <View key={index} style={styles.starContainer}>
-        <Image source={source} style={{ width: imageSize, height: imageSize, tintColor }} />
+        <Image
+          source={source}
+          style={{ width: imageSize, height: imageSize, tintColor }}
+        />
       </View>
     );
   }
@@ -205,12 +291,16 @@ export default class SwipeRating extends Component {
     } else if ( value < -ratingCount * imageSize / 2 ) {
       currentRating = this.props.minValue ? this.props.minValue : 0;
     } else if ( value <= imageSize || value > imageSize ) {
-      const diff = value / imageSize
+      const diff = value / imageSize;
 
       currentRating = startingValue + diff;
-      currentRating = fractions ? Number( currentRating.toFixed( fractions ) ) : Math.ceil( currentRating );
+      currentRating = fractions ?
+        Number( currentRating.toFixed( fractions ) ) :
+        Math.ceil( currentRating );
     } else {
-      currentRating = fractions ? Number( startingValue.toFixed( fractions ) ) : Math.ceil( startingValue );
+      currentRating = fractions ?
+        Number( startingValue.toFixed( fractions ) ) :
+        Math.ceil( startingValue );
     }
     if (
       this.props.jumpValue > 0 &&
@@ -249,30 +339,50 @@ export default class SwipeRating extends Component {
 
     newPosition.setValue( { x: value, y: 0 } );
     if ( this.state.isComponentMounted ) {
-      this.setState( {position: newPosition, value} );
+      this.setState( { position: newPosition, value } );
     }
   }
 
   displayCurrentRating() {
-    const { ratingCount, type, readonly, showReadOnlyText, ratingTextColor } = this.props;
+    const {
+      ratingCount,
+      type,
+      readonly,
+      showReadOnlyText,
+      ratingTextColor
+    } = this.props;
     const color = ratingTextColor || TYPES[type].color;
 
     return (
       <View style={styles.showRatingView}>
         <View style={styles.ratingView}>
-          <Text style={[styles.ratingText, { color }]}>Rating:{' '}</Text>
-          <Text style={[styles.currentRatingText, { color }]}>{this.getCurrentRating( this.state.value )}</Text>
+          <Text style={[styles.ratingText, { color }]}>Rating: </Text>
+          <Text style={[styles.currentRatingText, { color }]}>
+            {this.getCurrentRating( this.state.value )}
+          </Text>
           <Text style={[styles.maxRatingText, { color }]}>/{ratingCount}</Text>
         </View>
-        <View>{readonly && showReadOnlyText && <Text style={[styles.readonlyLabel, { color }]}>(readonly)</Text>}</View>
+        <View>
+          {readonly && showReadOnlyText &&
+            <Text style={[styles.readonlyLabel, { color }]}>(readonly)</Text>
+          }
+        </View>
       </View>
     );
   }
 
   render() {
-    const { readonly, type, ratingImage, ratingColor, ratingBackgroundColor, style, showRating } = this.props;
+    const {
+      readonly,
+      type,
+      ratingImage,
+      ratingColor,
+      ratingBackgroundColor,
+      style,
+      showRating
+    } = this.props;
 
-    if ( type === 'custom' ) {
+    if ( type === "custom" ) {
       const custom = {
         source: ratingImage,
         color: ratingColor,
@@ -282,116 +392,87 @@ export default class SwipeRating extends Component {
       TYPES.custom = custom;
     }
 
-    return (
-      this.state.display ?
-      <View pointerEvents={readonly ? 'none' : 'auto'} style={style}>
+    return this.state.display ?
+      <View pointerEvents={readonly ? "none" : "auto"} style={style}>
         {showRating && this.displayCurrentRating()}
-        <View style={styles.starsWrapper} {...this.state.panResponder.panHandlers}>
-            <View style={styles.starsInsideWrapper} onLayout={e => {
-              this.handleLayoutChange( e )
-            }} ref={view => {
+        <View
+          style={styles.starsWrapper}
+          {...this.state.panResponder.panHandlers}
+        >
+          <View
+            style={styles.starsInsideWrapper}
+            onLayout={() => {
+              this.handleLayoutChange();
+            }}
+            ref={view => {
               this.ratingRef = view;
-            }}>
+            }}
+          >
             <Animated.View style={this.getPrimaryViewStyle()} />
             <Animated.View style={this.getSecondaryViewStyle()} />
           </View>
           {this.renderRatings()}
         </View>
       </View> :
-      null
-    );
+     null;
   }
 
   componentWillUnmount() {
     this.setState( { isComponentMounted: false } );
   }
-
 }
 
 const styles = StyleSheet.create( {
   starsWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
   starsInsideWrapper: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
   showRatingView: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
     paddingBottom: 5
   },
   ratingView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     paddingBottom: 5
   },
   ratingText: {
     fontSize: 15,
-    textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
-    color: '#34495e'
+    textAlign: "center",
+    fontFamily: Platform.OS === "ios" ? "Trebuchet MS" : null,
+    color: "#34495e"
   },
   readonlyLabel: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     fontSize: 12,
-    textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
-    color: '#34495a'
+    textAlign: "center",
+    fontFamily: Platform.OS === "ios" ? "Trebuchet MS" : null,
+    color: "#34495a"
   },
   currentRatingText: {
     fontSize: 30,
-    textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null
+    textAlign: "center",
+    fontFamily: Platform.OS === "ios" ? "Trebuchet MS" : null
   },
   maxRatingText: {
     fontSize: 18,
-    textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
-    color: '#34495e'
+    textAlign: "center",
+    fontFamily: Platform.OS === "ios" ? "Trebuchet MS" : null,
+    color: "#34495e"
   }
 } );
-
-const fractionsType = ( props, propName, componentName ) => {
-  if ( props[propName] ) {
-    const value = props[propName];
-
-    if ( typeof value === 'number' ) {
-      return value >= 0 && value <= 20 ?
-        null :
-        new Error( `\`${propName}\` in \`${componentName}\` must be between 0 and 20` );
-    }
-
-    return new Error( `\`${propName}\` in \`${componentName}\` must be a number` );
-  }
-};
-
-SwipeRating.propTypes = {
-  type: PropTypes.string,
-  ratingImage: PropTypes.node,
-  ratingColor: PropTypes.string,
-  ratingBackgroundColor: PropTypes.string,
-  ratingCount: PropTypes.number,
-  ratingTextColor: PropTypes.string,
-  imageSize: PropTypes.number,
-  onStartRating: PropTypes.func,
-  onFinishRating: PropTypes.func,
-  showRating: PropTypes.bool,
-  style: PropTypes.object,
-  readonly: PropTypes.bool,
-  showReadOnlyText: PropTypes.bool,
-  startingValue: PropTypes.number,
-  fractions: fractionsType,
-  minValue: PropTypes.number
-};
