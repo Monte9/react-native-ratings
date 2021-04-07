@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "lint": "eslint --ext .ts --ext .tsx --ext .d.ts src/",
-    "lint-demo": "eslint demo/src/",
+    "lint-demo": "eslint --ext .ts --ext .tsx demo/src/",
     "lint-all": "yarn lint && yarn lint-demo",
     "clean-install": "rm -rf node_modules && yarn",
     "prepare": "husky install"

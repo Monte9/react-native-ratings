@@ -60,26 +60,26 @@ const fractionsType: any = ( props, propName, componentName ) => {
   }
 };
 
-type SwipeRatingProps = {
-  type: string;
-  ratingImage: React.ReactNode;
-  ratingColor: string;
-  ratingBackgroundColor: string;
-  ratingCount: number;
-  ratingTextColor: string;
-  imageSize: number;
-  onStartRating: Function;
-  onFinishRating: Function;
-  showRating: boolean;
-  style: Object;
-  readonly: boolean;
-  showReadOnlyText: boolean;
-  startingValue: number;
-  fractions: typeof fractionsType;
-  minValue: number;
-  onSwipeRating: ( number ) => void;
-  tintColor: number;
-  jumpValue: number;
+export type SwipeRatingProps = {
+  type?: string;
+  ratingImage?: React.ReactNode;
+  ratingColor?: string;
+  ratingBackgroundColor?: string;
+  ratingCount?: number;
+  ratingTextColor?: string;
+  imageSize?: number;
+  onStartRating?: Function;
+  onFinishRating?: Function;
+  showRating?: boolean;
+  style?: Object;
+  readonly?: boolean;
+  showReadOnlyText?: boolean;
+  startingValue?: number;
+  fractions?: typeof fractionsType;
+  minValue?: number;
+  onSwipeRating?: ( number ) => void;
+  tintColor?: string;
+  jumpValue?: number;
 };
 
 type SwipeRatingState = {

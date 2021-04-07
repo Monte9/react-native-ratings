@@ -6,25 +6,33 @@ import { StyleSheet, Text, View, StyleProp, ViewStyle } from "react-native";
 
 import Star from "./components/Star";
 
-type TapRatingProps = {
-  count: number;
-  reviews: string[];
-  showRating: boolean;
-  reviewColor: string;
-  reviewSize: number;
-  defaultRating: number;
-  starContainerStyle: StyleProp<ViewStyle>;
-  onFinishRating: ( number ) => number;
+export type TapRatingProps = {
+  count?: number;
+  reviews?: string[];
+  showRating?: boolean;
+  reviewColor?: string;
+  reviewSize?: number;
+  defaultRating?: number;
+  starContainerStyle?: StyleProp<ViewStyle>;
+  onFinishRating?: ( number ) => void;
+  isDisabled?: boolean;
+  selectedColor?: string;
+  size?: number;
+  starImage?: string;
 };
 
 const TapRating: React.FunctionComponent<TapRatingProps> = props => {
-  const [position, setPosition] = useState<number>( 5 );
+  const [position, setPosition] = useState<number>( props.defaultRating );
 
   useEffect( () => {
     const { defaultRating } = props;
 
-    setPosition( defaultRating );
-  }, [props] );
+    if ( defaultRating ) {
+      setPosition( defaultRating );
+    } else {
+      setPosition( 5 );
+    }
+  }, [props.defaultRating] );
 
   const renderStars = rating_array => {
     return _.map( rating_array, star => {
@@ -90,8 +98,6 @@ TapRating.defaultProps = {
   reviewSize: 25
 };
 
-export default TapRating;
-
 const styles = StyleSheet.create( {
   ratingContainer: {
     backgroundColor: "transparent",
@@ -109,3 +115,5 @@ const styles = StyleSheet.create( {
     justifyContent: "center"
   }
 } );
+
+export default TapRating;

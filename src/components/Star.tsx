@@ -12,15 +12,15 @@ const STAR_SELECTED_IMAGE = require( "../images/airbnb-star-selected.png" );
 const STAR_SIZE = 40;
 
 export type StarProps = {
-  starImage?: typeof STAR_IMAGE;
-  fill: boolean;
+  starImage?: string;
+  fill?: boolean;
   size?: number;
   selectedColor?: string;
   unSelectedColor?: string;
   isDisabled?: boolean;
   starStyle?: StyleProp<ViewStyle>;
-  position: number;
-  starSelectedInPosition: ( number ) => void;
+  position?: number;
+  starSelectedInPosition?: ( number ) => void;
 };
 
 const Star: React.FunctionComponent<StarProps> = props => {
@@ -40,6 +40,7 @@ const Star: React.FunctionComponent<StarProps> = props => {
     } ).start();
 
     setSelected( !selected );
+
     starSelectedInPosition( position );
   };
 
