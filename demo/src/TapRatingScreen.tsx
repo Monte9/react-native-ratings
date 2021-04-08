@@ -22,7 +22,7 @@ class TapRatingScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.flex}>
-        <StatusBar />
+        {Platform.OS === "android" ? <StatusBar /> : null}
 
         <View style={styles.headingContainer}>
           <Text style={styles.titleText}>Tap Rating</Text>

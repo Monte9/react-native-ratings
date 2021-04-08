@@ -1,9 +1,8 @@
 // /* eslint-disable import/no-commonjs */
-
-import path from "path";
-import escape from "escape-string-regexp";
 const blacklist = require("metro-config/src/defaults/blacklist");
 const pak = require("../package.json");
+const path = require("path");
+const escape = require("escape-string-regexp");
 
 const root = path.resolve(__dirname, "..");
 
