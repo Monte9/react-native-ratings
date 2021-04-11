@@ -70,6 +70,6 @@
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
-  "include": ["src/**/*.tsx", "src/**/*.ts", "src/*.tsx", "index.tsx","demo/**/*tsx","demo/**/*.ts","demo/*.tsx", "demo/metro.config.js"],
+  "include": ["src/**/*.tsx", "src/**/*.ts", "src/*.tsx", "index.tsx"],
   "exclude": ["node_modules", ".babelrc"]
 }
