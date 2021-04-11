@@ -2,8 +2,8 @@
   "name": "react-native-ratings",
   "version": "7.6.0",
   "description": "The standard Ratings component for React Native",
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/Monte9/react-native-ratings.git"
@@ -20,11 +20,12 @@
     "ui-components"
   ],
   "scripts": {
-    "lint": "eslint --ext .ts --ext .tsx --ext .d.ts src/",
+    "lint": "eslint --ext .ts --ext .tsx  src/",
     "lint-demo": "eslint --ext .ts --ext .tsx demo/src/",
     "lint-all": "yarn lint && yarn lint-demo",
     "clean-install": "rm -rf node_modules && yarn",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "tsc"
   },
   "author": "Monte Thakkar",
   "license": "MIT",
