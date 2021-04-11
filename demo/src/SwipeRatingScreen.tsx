@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
-  Text, View, ScrollView, SafeAreaView, Platform, StyleSheet
-} from 'react-native';
-import { Rating } from 'react-native-ratings';
+  Text,
+  View,
+  ScrollView,
+  SafeAreaView,
+  Platform,
+  StyleSheet,
+  StatusBar
+} from "react-native";
+import { Rating } from "../../src/index";
 
-import Card from './Card';
+import Card from "./Card";
 
-const WATER_IMAGE = require( '../assets/water.png' );
+const WATER_IMAGE = require( "../assets/water.png" );
 
 class SwipeRatingScreen extends Component {
   ratingCompleted( rating ) {
@@ -17,20 +23,28 @@ class SwipeRatingScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.flex}>
+        {Platform.OS === "android" ? <StatusBar /> : null}
         <View style={styles.headingContainer}>
           <Text style={styles.titleText}>Swipe Rating</Text>
-          <Text style={styles.subtitleText}>Fancy swipe ratings with fractions.</Text>
+          <Text style={styles.subtitleText}>
+            Fancy swipe ratings with fractions.
+          </Text>
         </View>
         <ScrollView style={styles.flex} contentContainerStyle={styles.center}>
           <Card title="DEFAULT" containerStyle={styles.card}>
-            <Rating showRating={false} fractions={false}/>
+            <Rating showRating={false} fractions={false} />
           </Card>
-          <Card title="WITH RATING(custom start value)" containerStyle={styles.card}>
-            <Rating showRating={true} fractions={false} startingValue={ 4 }/>
+          <Card
+            title="WITH RATING(custom start value)"
+            containerStyle={styles.card}
+          >
+            <Rating showRating={true} fractions={false} startingValue={4} />
           </Card>
           <Card title="WITH FRACTIONS" containerStyle={styles.card}>
             <Rating
-              showRating={true} fractions={2} ratingTextColor="teal"
+              showRating={true}
+              fractions={2}
+              ratingTextColor="teal"
               // eslint-disable-next-line no-console
               onStartRating={() => console.log( "started rating" )}
             />
@@ -48,7 +62,12 @@ class SwipeRatingScreen extends Component {
             />
           </Card>
           <Card title="CUSTOM TINT COLOR" containerStyle={styles.card}>
-            <Rating showRating={true} fractions={false} tintColor="white" startingValue={3} />
+            <Rating
+              showRating={true}
+              fractions={false}
+              tintColor="white"
+              startingValue={3}
+            />
           </Card>
           <Card title="CUSTOM IMAGE" containerStyle={styles.card}>
             <Rating
@@ -87,29 +106,29 @@ const styles = StyleSheet.create( {
     flex: 1
   },
   center: {
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   },
   headingContainer: {
     paddingBottom: 30
   },
   titleText: {
     fontSize: 25,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     paddingVertical: 5,
-    fontFamily: Platform.OS === 'ios' ? 'Menlo-Bold' : null,
-    color: '#27ae60'
+    fontFamily: Platform.OS === "ios" ? "Menlo-Bold" : null,
+    color: "#27ae60"
   },
   subtitleText: {
     fontSize: 18,
-    fontWeight: '400',
-    textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
-    color: '#34495e'
+    fontWeight: "400",
+    textAlign: "center",
+    fontFamily: Platform.OS === "ios" ? "Trebuchet MS" : null,
+    color: "#34495e"
   },
   card: {
-    width: '85%',
+    width: "85%",
     marginBottom: 20
   }
 } );

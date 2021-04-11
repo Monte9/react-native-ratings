@@ -2,8 +2,8 @@
   "name": "react-native-ratings",
   "version": "7.6.0",
   "description": "The standard Ratings component for React Native",
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/Monte9/react-native-ratings.git"
@@ -20,11 +20,12 @@
     "ui-components"
   ],
   "scripts": {
-    "lint": "eslint src/",
-    "lint-demo": "eslint demo/src/",
+    "lint": "eslint --ext .ts --ext .tsx  src/",
+    "lint-demo": "eslint --ext .ts --ext .tsx demo/src/",
     "lint-all": "yarn lint && yarn lint-demo",
     "clean-install": "rm -rf node_modules && yarn",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "tsc"
   },
   "author": "Monte Thakkar",
   "license": "MIT",
@@ -37,13 +38,16 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
+    "@types/node": "^14.14.37",
+    "@types/react": "^17.0.3",
     "babel-eslint": "^10.1.0",
     "eslint": "^5.6.1",
     "eslint-plugin-react": "^7.11.1",
     "husky": "^5.2.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
-    "react-native": "^0.61.4"
+    "react-native": "^0.61.4",
+    "typescript": "^4.2.3"
   },
   "peerDependencies": {
     "react": "*",
