@@ -8,7 +8,7 @@ import {
   StyleSheet,
   StatusBar
 } from "react-native";
-import { Rating } from "../../src/index";
+import { Rating } from "../../dist/index";
 
 import Card from "./Card";
 

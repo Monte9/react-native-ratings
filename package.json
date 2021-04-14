@@ -25,7 +25,9 @@
     "lint-all": "yarn lint && yarn lint-demo",
     "clean-install": "rm -rf node_modules && yarn",
     "prepare": "husky install",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "copy-files": "cp -R ./src/images ./dist/images/",
+    "postbuild": "yarn run copy-files"
   },
   "author": "Monte Thakkar",
   "license": "MIT",

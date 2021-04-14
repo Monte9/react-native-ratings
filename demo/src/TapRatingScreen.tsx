@@ -8,7 +8,7 @@ import {
   StyleSheet,
   StatusBar
 } from "react-native";
-import { AirbnbRating } from "../../src/index";
+import { AirbnbRating } from "../../dist/index";
 
 import Card from "./Card";
 const WATER_IMAGE = require( "../assets/water.png" );
