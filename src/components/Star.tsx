@@ -7,8 +7,8 @@ import {
   ViewStyle
 } from "react-native";
 
-const STAR_IMAGE = require( "../images/airbnb-star.png" );
-const STAR_SELECTED_IMAGE = require( "../images/airbnb-star-selected.png" );
+const STAR_IMAGE = require( "../../assets/star.png" );
+const STAR_SELECTED_IMAGE = require( "../../assets/airbnb-star-selected.png" );
 const STAR_SIZE = 40;
 
 export type StarProps = {

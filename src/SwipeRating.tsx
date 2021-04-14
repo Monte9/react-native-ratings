@@ -13,10 +13,10 @@ import {
 } from "react-native";
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
-const STAR_IMAGE = require( "./images/star.png" );
-const HEART_IMAGE = require( "./images/heart.png" );
-const ROCKET_IMAGE = require( "./images/rocket.png" );
-const BELL_IMAGE = require( "./images/bell.png" );
+const STAR_IMAGE = require( "../assets/star.png" );
+const HEART_IMAGE = require( "../assets/heart.png" );
+const ROCKET_IMAGE = require( "../assets/rocket.png" );
+const BELL_IMAGE = require( "../assets/bell.png" );
 
 const TYPES = {
   star: {
