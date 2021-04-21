@@ -97,10 +97,10 @@ const TapRating: React.FunctionComponent<TapRatingProps> = props => {
   useEffect( () => {
     const { defaultRating } = props;
 
-    if ( defaultRating ) {
+    if ( defaultRating > 0 ) {
       setPosition( defaultRating );
     } else {
-      setPosition( 5 );
+      setPosition( 0 );
     }
   }, [props.defaultRating] );
 
