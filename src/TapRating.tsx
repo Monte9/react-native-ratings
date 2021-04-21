@@ -97,11 +97,7 @@ const TapRating: React.FunctionComponent<TapRatingProps> = props => {
   useEffect( () => {
     const { defaultRating } = props;
 
-    if ( defaultRating > 0 ) {
-      setPosition( defaultRating );
-    } else {
-      setPosition( 0 );
-    }
+    setPosition( defaultRating );
   }, [props.defaultRating] );
 
   const renderStars = rating_array => {
