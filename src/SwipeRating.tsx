@@ -9,7 +9,9 @@ import {
   Image,
   StyleSheet,
   Platform,
-  Dimensions
+  Dimensions,
+  StyleProp,
+  ViewStyle
 } from "react-native";
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
@@ -127,7 +129,7 @@ export type SwipeRatingProps = {
   /**
    * Exposes style prop to add additonal styling to the container view
    */
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
 
   /**
    * Whether the rating can be modiefied by the user
