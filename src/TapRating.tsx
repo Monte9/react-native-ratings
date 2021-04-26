@@ -13,7 +13,7 @@ export type TapRatingProps = {
    *
    * Default is 5
    */
-  count?: number;
+  count: number;
 
   /**
    * Labels to show when each value is tapped
@@ -22,76 +22,77 @@ export type TapRatingProps = {
    *
    * Default is ['Terrible', 'Bad', 'Okay', 'Good', 'Great']
    */
-  reviews?: string[];
+  reviews: string[];
 
   /**
    * Determines if to show the reviews above the rating
    *
    * Default is true
    */
-  showRating?: boolean;
+  showRating: boolean;
 
   /**
    * Color value for review.
    *
    * Default is #f1c40f
    */
-  reviewColor?: string;
+  reviewColor: string;
 
   /**
    * Size value for review.
    *
    * Default is 40
    */
-  reviewSize?: number;
+  reviewSize: number;
 
   /**
    * Initial value for the rating
    *
    * Default is 3
    */
-  defaultRating?: number;
+  defaultRating: number;
 
   /**
    * Style for star container
    *
    * Default is none
    */
-  starContainerStyle?: StyleProp<ViewStyle>;
+  starContainerStyle: StyleProp<ViewStyle>;
 
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
-  onFinishRating?: ( number ) => void;
+  onFinishRating: ( number ) => void;
 
   /**
    * Whether the rating can be modiefied by the user
    *
    * Default is false
    */
-  isDisabled?: boolean;
+  isDisabled: boolean;
 
   /**
    * Color value for filled stars.
    *
    * Default is #004666
    */
-  selectedColor?: string;
+  selectedColor: string;
 
   /**
    * Size of rating image
    *
    * Default is 40
    */
-  size?: number;
+  size: number;
 
   /**
    * Pass in a custom base image source
    */
-  starImage?: string;
+  starImage: string;
 };
 
-const TapRating: React.FunctionComponent<TapRatingProps> = props => {
+// eslint-disable-next-line
+const TapRating: React.FunctionComponent<Partial<TapRatingProps>> = (props) => {
   const [position, setPosition] = useState<number>( props.defaultRating );
 
   useEffect( () => {
