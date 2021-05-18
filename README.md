@@ -107,6 +107,7 @@ Also refer to the [`example`](https://github.com/Monte9/react-native-ratings/tre
 | isDisabled | false | boolean | Whether the rating can be modiefied by the user |
 | onFinishRating | none | function(value: number) | Callback method when the user finishes rating. Gives you the final rating value as a whole number |
 | starContainerStyle | none | object or stylesheet | Custom styles applied to the star container |
+| ratingContainerStyle | none | object or stylesheet | Custom styles applied to the rating container |
 | starImage | STAR_IMAGE | string | Pass in a custom base image source (optional) |
 
 ### RatingProps
