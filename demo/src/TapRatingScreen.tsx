@@ -37,6 +37,12 @@ class TapRatingScreen extends Component {
           <Card title="WITH RATING" containerStyle={styles.card}>
             <AirbnbRating showRating={true} />
           </Card>
+          <Card title="WITH CUSTOM RATING CONTAINER STYLE" containerStyle={styles.card}>
+            <AirbnbRating showRating={true} ratingContainerStyle={{
+                alignSelf: "center",
+                backgroundColor: "#ede7f6"
+              }}/>
+          </Card>
           <Card title="CUSTOM RATING" containerStyle={styles.card}>
             <AirbnbRating
               count={10}
