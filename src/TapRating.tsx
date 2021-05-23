@@ -60,6 +60,13 @@ export type TapRatingProps = {
   starContainerStyle?: StyleProp<ViewStyle>;
 
   /**
+   * Style for rating container
+   *
+   * Default is none
+   */
+   ratingContainerStyle?: StyleProp<ViewStyle>;
+
+  /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
   onFinishRating?: ( number ) => void;
@@ -128,6 +135,12 @@ const TapRating: React.FunctionComponent<TapRatingProps> = props => {
     starContainerStyle.push( props.starContainerStyle );
   }
 
+  const ratingContainerStyle = [styles.ratingContainer];
+
+  if ( props.ratingContainerStyle ) {
+    ratingContainerStyle.push( props.ratingContainerStyle );
+  }
+
   _.times( count, index => {
     rating_array.push(
       <Star
@@ -143,7 +156,7 @@ const TapRating: React.FunctionComponent<TapRatingProps> = props => {
   } );
 
   return (
-    <View style={styles.ratingContainer}>
+    <View style={ratingContainerStyle}>
       {showRating &&
         <Text
           style={[
