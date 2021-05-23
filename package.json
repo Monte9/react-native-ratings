@@ -1,6 +1,6 @@
 {
   "name": "react-native-ratings",
-  "version": "8.0.4",
+  "version": "8.1.0",
   "description": "The standard Ratings component for React Native",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
