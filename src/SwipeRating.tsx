@@ -525,7 +525,8 @@ const styles = StyleSheet.create( {
   starsWrapper: {
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    left: 1
   },
   starsInsideWrapper: {
     position: "absolute",
