@@ -8,93 +8,43 @@ import Star from "./components/Star";
 
 export type TapRatingProps = {
 
-  /**
-   * Total number of ratings to display
-   *
-   * Default is 5
-   */
+  /** Total number of ratings to display. */
   count?: number;
 
-  /**
-   * Labels to show when each value is tapped
-   *
-   * e.g. If the first star is tapped, then value in index 0 will be used as the label
-   *
-   * Default is ['Terrible', 'Bad', 'Okay', 'Good', 'Great']
-   */
+  /** Labels to show when each value is tapped. E.g. If the first star is tapped, then value in index 0 will be used as the label. */
   reviews?: string[];
 
-  /**
-   * Determines if to show the reviews above the rating
-   *
-   * Default is true
-   */
+  /** Determines if to show the reviews above the rating. */
   showRating?: boolean;
 
-  /**
-   * Color value for review.
-   *
-   * Default is #f1c40f
-   */
+  /** Color value for review. */
   reviewColor?: string;
 
-  /**
-   * Size value for review.
-   *
-   * Default is 40
-   */
+  /** Size value for review. */
   reviewSize?: number;
 
-  /**
-   * Initial value for the rating
-   *
-   * Default is 3
-   */
+  /** Initial value for the rating. */
   defaultRating?: number;
 
-  /**
-   * Style for star container
-   *
-   * Default is none
-   */
+  /** Style for star container. */
   starContainerStyle?: StyleProp<ViewStyle>;
 
-  /**
-   * Style for rating container
-   *
-   * Default is none
-   */
-   ratingContainerStyle?: StyleProp<ViewStyle>;
+  /** Style for rating container. */
+  ratingContainerStyle?: StyleProp<ViewStyle>;
 
-  /**
-   * Callback method when the user finishes rating. Gives you the final rating value as a whole number
-   */
+  /** Callback method when the user finishes rating. Gives you the final rating value as a whole number. */
   onFinishRating?: ( number ) => void;
 
-  /**
-   * Whether the rating can be modiefied by the user
-   *
-   * Default is false
-   */
+  /** Whether the rating can be modiefied by the user. */
   isDisabled?: boolean;
 
-  /**
-   * Color value for filled stars.
-   *
-   * Default is #004666
-   */
+  /** Color value for filled stars. */
   selectedColor?: string;
 
-  /**
-   * Size of rating image
-   *
-   * Default is 40
-   */
+  /** Size of rating image. */
   size?: number;
 
-  /**
-   * Pass in a custom base image source
-   */
+  /** Pass in a custom base image source. */
   starImage?: string;
 };
 
