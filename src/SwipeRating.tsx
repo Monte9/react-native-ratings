@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import times from "lodash/times";
 
 import {
   View,
@@ -209,12 +208,8 @@ export default class SwipeRating extends Component<
 
   constructor( props ) {
     super( props );
-    const {
-      onStartRating,
-      onSwipeRating,
-      onFinishRating,
-      fractions
-    } = this.props;
+    const { onStartRating, onSwipeRating, onFinishRating, fractions } =
+      this.props;
     const position = new Animated.ValueXY();
 
     const panResponder = PanResponder.create( {
@@ -366,15 +361,20 @@ export default class SwipeRating extends Component<
   renderRatings() {
     const { imageSize, ratingCount, type, tintColor } = this.props;
     const { source } = TYPES[type];
+    const rating_array = [];
 
-    return times( ratingCount, index =>
-      <View key={index} style={styles.starContainer}>
-        <Image
-          source={source}
-          style={{ width: imageSize, height: imageSize, tintColor }}
-        />
-      </View>
-    );
+    for ( let i = 0; i < ratingCount; i += 1 ) {
+      rating_array.push(
+        <View key={i} style={styles.starContainer}>
+          <Image
+            source={source}
+            style={{ width: imageSize, height: imageSize, tintColor }}
+          />
+        </View>
+      );
+    }
+
+    return rating_array;
   }
 
   // eslint-disable-next-line max-statements
@@ -443,13 +443,8 @@ export default class SwipeRating extends Component<
   }
 
   displayCurrentRating() {
-    const {
-      ratingCount,
-      type,
-      readonly,
-      showReadOnlyText,
-      ratingTextColor
-    } = this.props;
+    const { ratingCount, type, readonly, showReadOnlyText, ratingTextColor } =
+      this.props;
     const color = ratingTextColor || TYPES[type].color;
 
     return (
@@ -573,5 +568,6 @@ const styles = StyleSheet.create( {
     textAlign: "center",
     fontFamily: Platform.OS === "ios" ? "Trebuchet MS" : null,
     color: "#34495e"
-  }
+  },
+  starContainer: {}
 } );
