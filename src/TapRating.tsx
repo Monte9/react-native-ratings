@@ -64,7 +64,7 @@ export type TapRatingProps = {
    *
    * Default is none
    */
-   ratingContainerStyle?: StyleProp<ViewStyle>;
+  ratingContainerStyle?: StyleProp<ViewStyle>;
 
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
@@ -96,6 +96,11 @@ export type TapRatingProps = {
    * Pass in a custom base image source
    */
   starImage?: string;
+
+  /**
+   * Style for star
+   */
+  starStyle?: StyleProp<ViewStyle>;
 };
 
 const TapRating: React.FunctionComponent<TapRatingProps> = props => {
