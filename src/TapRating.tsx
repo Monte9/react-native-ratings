@@ -2,7 +2,7 @@ import _ from "lodash";
 
 import React, { useState, useEffect } from "react";
 
-import { StyleSheet, Text, View, StyleProp, ViewStyle } from "react-native";
+import { StyleSheet, Text, View, StyleProp, ViewStyle, TextStyle } from "react-native";
 
 import Star from "./components/Star";
 
@@ -65,6 +65,13 @@ export type TapRatingProps = {
    * Default is none
    */
    ratingContainerStyle?: StyleProp<ViewStyle>;
+
+  /**
+   * Style for review text
+   *
+   * Default is none
+   */
+   reviewTextStyle?: StyleProp<TextStyle>;
 
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
@@ -141,6 +148,12 @@ const TapRating: React.FunctionComponent<TapRatingProps> = props => {
     ratingContainerStyle.push( props.ratingContainerStyle );
   }
 
+  const reviewTextStyle = [styles.reviewText, { fontSize: reviewSize, color: reviewColor }];
+
+  if ( props.reviewTextStyle ) {
+    reviewTextStyle.push( props.reviewTextStyle );
+  }
+
   _.times( count, index => {
     rating_array.push(
       <Star
@@ -158,12 +171,7 @@ const TapRating: React.FunctionComponent<TapRatingProps> = props => {
   return (
     <View style={ratingContainerStyle}>
       {showRating &&
-        <Text
-          style={[
-            styles.reviewText,
-            { fontSize: reviewSize, color: reviewColor }
-          ]}
-        >
+        <Text style={reviewTextStyle}>
           {reviews[position - 1]}
         </Text>
       }
