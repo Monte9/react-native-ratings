@@ -7,88 +7,87 @@ import { StyleSheet, Text, View, StyleProp, ViewStyle } from "react-native";
 import Star from "./components/Star";
 
 export type TapRatingProps = {
-
   /**
-   * Total number of ratings to display
+   * Total number of ratings to display.
    *
-   * Default is 5
+   * @default 5
    */
   count?: number;
 
   /**
-   * Labels to show when each value is tapped
+   * Labels to show when each value is tapped.
    *
-   * e.g. If the first star is tapped, then value in index 0 will be used as the label
+   * e.g. If the first star is tapped, then value in index 0 will be used as the label.
    *
-   * Default is ['Terrible', 'Bad', 'Okay', 'Good', 'Great']
+   * @default ['Terrible', 'Bad', 'Okay', 'Good', 'Great']
    */
   reviews?: string[];
 
   /**
-   * Determines if to show the reviews above the rating
+   * Determines if to show the reviews above the rating.
    *
-   * Default is true
+   * @default true
    */
   showRating?: boolean;
 
   /**
    * Color value for review.
    *
-   * Default is #f1c40f
+   * @default #f1c40f
    */
   reviewColor?: string;
 
   /**
    * Size value for review.
    *
-   * Default is 40
+   * @default 40
    */
   reviewSize?: number;
 
   /**
    * Initial value for the rating
    *
-   * Default is 3
+   * @default 3
    */
   defaultRating?: number;
 
   /**
    * Style for star container
    *
-   * Default is none
+   * @default undefined
    */
   starContainerStyle?: StyleProp<ViewStyle>;
 
   /**
    * Style for rating container
    *
-   * Default is none
+   * @default undefined
    */
-   ratingContainerStyle?: StyleProp<ViewStyle>;
+  ratingContainerStyle?: StyleProp<ViewStyle>;
 
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
-  onFinishRating?: ( number ) => void;
+  onFinishRating?: (number) => void;
 
   /**
    * Whether the rating can be modiefied by the user
    *
-   * Default is false
+   * @default false
    */
   isDisabled?: boolean;
 
   /**
    * Color value for filled stars.
    *
-   * Default is #004666
+   * @default #004666
    */
   selectedColor?: string;
 
   /**
    * Size of rating image
    *
-   * Default is 40
+   * @default 40
    */
   size?: number;
 
@@ -98,76 +97,76 @@ export type TapRatingProps = {
   starImage?: string;
 };
 
-const TapRating: React.FunctionComponent<TapRatingProps> = props => {
-  const [position, setPosition] = useState<number>( props.defaultRating );
+const TapRating: React.FunctionComponent<TapRatingProps> = (props) => {
+  const [position, setPosition] = useState<number>(props.defaultRating);
 
-  useEffect( () => {
+  useEffect(() => {
     const { defaultRating } = props;
 
-    if ( defaultRating === null || defaultRating === undefined ) {
-      setPosition( 3 );
+    if (defaultRating === null || defaultRating === undefined) {
+      setPosition(3);
     } else {
-      setPosition( defaultRating );
+      setPosition(defaultRating);
     }
-  }, [props.defaultRating] );
+  }, [props.defaultRating]);
 
-  const renderStars = rating_array => {
-    return _.map( rating_array, star => {
+  const renderStars = (rating_array) => {
+    return _.map(rating_array, (star) => {
       return star;
-    } );
+    });
   };
 
-  const starSelectedInPosition = position => {
+  const starSelectedInPosition = (position) => {
     const { onFinishRating } = props;
 
-    if ( typeof onFinishRating === "function" ) {
-      onFinishRating( position );
+    if (typeof onFinishRating === "function") {
+      onFinishRating(position);
     }
 
-    setPosition( position );
+    setPosition(position);
   };
 
   const { count, reviews, showRating, reviewColor, reviewSize } = props;
   const rating_array = [];
   const starContainerStyle = [styles.starContainer];
 
-  if ( props.starContainerStyle ) {
-    starContainerStyle.push( props.starContainerStyle );
+  if (props.starContainerStyle) {
+    starContainerStyle.push(props.starContainerStyle);
   }
 
   const ratingContainerStyle = [styles.ratingContainer];
 
-  if ( props.ratingContainerStyle ) {
-    ratingContainerStyle.push( props.ratingContainerStyle );
+  if (props.ratingContainerStyle) {
+    ratingContainerStyle.push(props.ratingContainerStyle);
   }
 
-  _.times( count, index => {
+  _.times(count, (index) => {
     rating_array.push(
       <Star
         key={index}
         position={index + 1}
-        starSelectedInPosition={value => {
-          starSelectedInPosition( value );
+        starSelectedInPosition={(value) => {
+          starSelectedInPosition(value);
         }}
         fill={position >= index + 1}
         {...props}
       />
     );
-  } );
+  });
 
   return (
     <View style={ratingContainerStyle}>
-      {showRating &&
+      {showRating && (
         <Text
           style={[
             styles.reviewText,
-            { fontSize: reviewSize, color: reviewColor }
+            { fontSize: reviewSize, color: reviewColor },
           ]}
         >
           {reviews[position - 1]}
         </Text>
-      }
-      <View style={starContainerStyle}>{renderStars( rating_array )}</View>
+      )}
+      <View style={starContainerStyle}>{renderStars(rating_array)}</View>
     </View>
   );
 };
@@ -178,25 +177,25 @@ TapRating.defaultProps = {
   count: 5,
   showRating: true,
   reviewColor: "rgba(230, 196, 46, 1)",
-  reviewSize: 25
+  reviewSize: 25,
 };
 
-const styles = StyleSheet.create( {
+const styles = StyleSheet.create({
   ratingContainer: {
     backgroundColor: "transparent",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   reviewText: {
     fontWeight: "bold",
-    margin: 10
+    margin: 10,
   },
   starContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
-  }
-} );
+    justifyContent: "center",
+  },
+});
 
 export default TapRating;
