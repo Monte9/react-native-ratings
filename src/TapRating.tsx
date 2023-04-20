@@ -85,6 +85,13 @@ export type TapRatingProps = {
   selectedColor?: string;
 
   /**
+   * Color value for not filled stars.
+   *
+   * @default #BDC3C7
+   */
+  unSelectedColor?: string;
+
+  /**
    * Size of rating image
    *
    * @default 40
