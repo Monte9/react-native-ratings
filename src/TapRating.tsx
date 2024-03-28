@@ -161,7 +161,7 @@ const TapRating: React.FunctionComponent<TapRatingProps> = (props) => {
   });
 
   return (
-    <View style={ratingContainerStyle}>
+    <View testID={`${testID}_container`} style={ratingContainerStyle}>
       {showRating && (
         <Text
           testID={`${testID}_ratingText`}
