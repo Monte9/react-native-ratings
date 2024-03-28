@@ -95,6 +95,11 @@ export type TapRatingProps = {
    * Pass in a custom base image source
    */
   starImage?: string;
+
+  /**
+   * Testing ID for Jest
+   */
+  testID?: string;
 };
 
 const TapRating: React.FunctionComponent<TapRatingProps> = (props) => {
@@ -126,7 +131,7 @@ const TapRating: React.FunctionComponent<TapRatingProps> = (props) => {
     setPosition(position);
   };
 
-  const { count, reviews, showRating, reviewColor, reviewSize } = props;
+  const { count, reviews, showRating, reviewColor, reviewSize, testID } = props;
   const rating_array = [];
   const starContainerStyle = [styles.starContainer];
 
@@ -143,6 +148,7 @@ const TapRating: React.FunctionComponent<TapRatingProps> = (props) => {
   _.times(count, (index) => {
     rating_array.push(
       <Star
+        testID={`${testID}_star_${index}`}
         key={index}
         position={index + 1}
         starSelectedInPosition={(value) => {
@@ -158,6 +164,7 @@ const TapRating: React.FunctionComponent<TapRatingProps> = (props) => {
     <View style={ratingContainerStyle}>
       {showRating && (
         <Text
+          testID={`${testID}_ratingText`}
           style={[
             styles.reviewText,
             { fontSize: reviewSize, color: reviewColor },
@@ -166,7 +173,9 @@ const TapRating: React.FunctionComponent<TapRatingProps> = (props) => {
           {reviews[position - 1]}
         </Text>
       )}
-      <View style={starContainerStyle}>{renderStars(rating_array)}</View>
+      <View testID={`${testID}_starsContainer`} style={starContainerStyle}>
+        {renderStars(rating_array)}
+      </View>
     </View>
   );
 };
@@ -178,6 +187,7 @@ TapRating.defaultProps = {
   showRating: true,
   reviewColor: "rgba(230, 196, 46, 1)",
   reviewSize: 25,
+  testID: "rating",
 };
 
 const styles = StyleSheet.create({
