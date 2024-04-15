@@ -21,6 +21,7 @@ export type StarProps = {
   starStyle?: StyleProp<ViewStyle>;
   position?: number;
   starSelectedInPosition?: ( number ) => void;
+  testId?: string;
 };
 
 const Star: React.FunctionComponent<StarProps> = props => {
@@ -51,14 +52,20 @@ const Star: React.FunctionComponent<StarProps> = props => {
     selectedColor,
     unSelectedColor,
     isDisabled,
-    starStyle
+    starStyle,
+    testId
   } = props;
 
   const starSource =
     fill && selectedColor === null ? STAR_SELECTED_IMAGE : starImage;
 
   return (
-    <TouchableOpacity activeOpacity={1} onPress={spring} disabled={isDisabled}>
+    <TouchableOpacity
+      testId={testId}
+      activeOpacity={1}
+      onPress={spring}
+      disabled={isDisabled}
+    >
       <Animated.Image
         source={starSource}
         style={[
