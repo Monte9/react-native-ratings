@@ -99,7 +99,7 @@ export type TapRatingProps = {
   /**
    * Testing ID for Jest
    */
-  testID?: string;
+  testId?: string;
 };
 
 const TapRating: React.FunctionComponent<TapRatingProps> = (props) => {
@@ -161,7 +161,7 @@ const TapRating: React.FunctionComponent<TapRatingProps> = (props) => {
   });
 
   return (
-    <View testID={`${testID}_container`} style={ratingContainerStyle}>
+    <View testID={`${testID}_ratingContainer`} style={ratingContainerStyle}>
       {showRating && (
         <Text
           testID={`${testID}_ratingText`}
@@ -173,7 +173,7 @@ const TapRating: React.FunctionComponent<TapRatingProps> = (props) => {
           {reviews[position - 1]}
         </Text>
       )}
-      <View testID={`${testID}_starsContainer`} style={starContainerStyle}>
+      <View testID={`${testID}_starContainer`} style={starContainerStyle}>
         {renderStars(rating_array)}
       </View>
     </View>
