@@ -23,7 +23,7 @@ export type StarProps = {
   starSelectedInPosition?: ( number ) => void;
 };
 
-const Star: React.FunctionComponent<StarProps> = props => {
+const Star: React.FunctionComponent<StarProps> = ({starImage = STAR_IMAGE, selectedColor = "#f1c40f", unSelectedColor = "#BDC3C7", ...props}) => {
   const [selected, setSelected] = useState<boolean>( false );
   const springValue = new Animated.Value( 1 );
 
@@ -45,11 +45,8 @@ const Star: React.FunctionComponent<StarProps> = props => {
   };
 
   const {
-    starImage,
     fill,
     size,
-    selectedColor,
-    unSelectedColor,
     isDisabled,
     starStyle
   } = props;
@@ -74,12 +71,6 @@ const Star: React.FunctionComponent<StarProps> = props => {
       />
     </TouchableOpacity>
   );
-};
-
-Star.defaultProps = {
-  starImage: STAR_IMAGE,
-  selectedColor: "#f1c40f",
-  unSelectedColor: "#BDC3C7"
 };
 
 export default Star;
