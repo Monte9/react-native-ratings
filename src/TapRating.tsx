@@ -68,7 +68,7 @@ export type TapRatingProps = {
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
-  onFinishRating?: (number) => void;
+  onFinishRating?: (rating: number) => void;
 
   /**
    * Whether the rating can be modiefied by the user
